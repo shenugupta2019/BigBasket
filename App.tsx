@@ -27,6 +27,9 @@ import {
 
 import HighPerformanceList from './components/HighPerformanceFlatList'
 import ProductsScreen from './screens/ProductsScreen'
+import Counter from './screens/Counter'
+import { Provider } from 'react-redux';
+import { store } from './redux/store'; // Import the store
 
 
 
@@ -38,15 +41,18 @@ function App(): React.JSX.Element {
   };
 
   return (
+    <Provider store={store}>
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
+      <Counter/> 
       {/* <HighPerformanceList/> */}
-      <ProductsScreen/>
+      {/* <ProductsScreen/> */}
       
     </SafeAreaView>
+    </Provider>
   );
 }
 
