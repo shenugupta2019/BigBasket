@@ -32,6 +32,7 @@ import Counter from './screens/Counter'
 import { Provider } from 'react-redux';
 import { store } from './redux/store'; // Import the store
 import RegisterScreen from './screens/RegistrationScreen';
+import LoginScreen from './screens/LoginScreen';
 
 
 
@@ -51,8 +52,9 @@ function App(): React.JSX.Element {
       />
       {/* <Counter/>  */}
       {/* <HighPerformanceList/> */}
-      <RegisterScreen/>
+      {/* <RegisterScreen/> */}
       {/* <ProductsScreen/> */}
+      <LoginScreen/>
       
     </SafeAreaView>
     </Provider>
