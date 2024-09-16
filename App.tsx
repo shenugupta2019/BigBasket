@@ -34,16 +34,52 @@ import { store } from './redux/store'; // Import the store
 import RegisterScreen from './screens/RegistrationScreen';
 import LoginScreen from './screens/LoginScreen';
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary'; 
+import { Alert } from 'react-native';
+import RNRestart from 'react-native-restart'; 
 
 
 
 function App(): React.JSX.Element {
+
+
+// Set the global error handler
+ErrorUtils.setGlobalHandler((error, isFatal) => {
+  console.error("Global error caught:", error);
+
+  if (isFatal) {
+    // Show an alert for fatal errors
+    Alert.alert(
+      'Unexpected error occurred',
+      `
+        Error: ${(error as Error).message}
+        The app will be restarted to fix this issue.
+      `,
+      [
+        {
+          text: 'Restart',
+          onPress: () => {
+            // Optionally restart the app (you can use RNRestart for this)
+            RNRestart.Restart();
+          },
+        },
+      ]
+    );
+  } else {
+    // For non-fatal errors, just log the error or handle it in another way
+    console.warn("Non-fatal error:", error);
+  }
+});
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  // process.on('unhandledRejection', (reason, promise) => {
+  //   console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+  //   // Optionally log or send this to a remote error monitoring service
+  // });
+  
   return (
     <Provider store={store}>
         <ErrorBoundary>

@@ -49,7 +49,10 @@ const LoginScreen: React.FC = () => {
       />
       <Button
         title={status === 'loading' ? 'Logging in...' : 'Login'}
-        onPress={handleLogin}
+        // onPress={handleLogin}
+        onPress={() => {
+            throw new Error("Simulated Error!");
+          }}
         disabled={status === 'loading'}
       />
     </View>
