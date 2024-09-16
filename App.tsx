@@ -47,9 +47,9 @@ function App(): React.JSX.Element {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <Counter/> 
+      {/* <Counter/>  */}
       {/* <HighPerformanceList/> */}
-      {/* <ProductsScreen/> */}
+      <ProductsScreen/>
       
     </SafeAreaView>
     </Provider>

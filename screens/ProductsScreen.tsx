@@ -4,34 +4,45 @@ import { getProdcuts,ProductList } from '../productServices/productService';
 import ProductListData from '../components/ProductListData';
 import HighPerformanceList from '../components/HighPerformanceFlatList';
 import { postRequest } from '../serviceLayer/apiClient';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { fetchData } from '../redux/slices/fetchDataSlice';
 
 const ProductsScreen: React.FC = () => {
   const [products, setProducts] = useState<ProductList>();
   const [loading, setLoading] = useState<boolean>(true);
+  const dispatch = useAppDispatch();
+  const { data, status, error } = useAppSelector((state) => state.data);
+  console.log('redux state shenu',data,status,error)
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const productsData = await getProdcuts();
-        console.log('get the products data shenu length 5555',productsData)
-        setProducts(productsData);
-      } catch (error) {
-        console.error('Failed to fetch users', error);
-      } finally {
-        setLoading(false);
-      }
-    };
+    dispatch(fetchData());
+    // const fetchUsers = async () => {
+    //   try {
+    //     const productsData = await getProdcuts();
+    //     console.log('get the products data shenu length 5555',productsData)
+    //     setProducts(productsData);
+    //   } catch (error) {
+    //     console.error('Failed to fetch users', error);
+    //   } finally {
+    //     setLoading(false);
+    //   }
+    // };
 
-    fetchUsers();
-  }, []);
+    // fetchUsers();
+  }, [dispatch]);
 
-  if (loading) {
+  if (status === 'loading') {
     return <ActivityIndicator size="large" color="#0000ff" />;
   }
 
+  if (status === 'failed') {
+    return <Text>Error: {error}</Text>;
+  }
+
+
   return (
     <View>
-     <HighPerformanceList productData={products}/>
+     <HighPerformanceList productData={data}/>
     </View>
   );
 };
