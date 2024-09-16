@@ -33,6 +33,7 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store'; // Import the store
 import RegisterScreen from './screens/RegistrationScreen';
 import LoginScreen from './screens/LoginScreen';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary'; 
 
 
 
@@ -45,6 +46,7 @@ function App(): React.JSX.Element {
 
   return (
     <Provider store={store}>
+        <ErrorBoundary>
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
@@ -57,6 +59,7 @@ function App(): React.JSX.Element {
       <LoginScreen/>
       
     </SafeAreaView>
+    </ErrorBoundary>
     </Provider>
   );
 }
