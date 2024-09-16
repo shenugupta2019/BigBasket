@@ -1,18 +1,36 @@
 // redux/slices/dataSlice.ts
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+//import apiClient from '../../serviceLayer/apiClient';
+//import {ProductList} from '../../productServices/productService';
+import axiosInstance from '../../serviceLayer/axiosInstance';
+
+export interface ProductList {
+    album: Album[]
+  }
+
+
+export interface Album {
+    albumId: number
+    id: number
+    title: string
+    url: string
+    thumbnailUrl: string
+
+}
 
 // Define the initial state
 const initialState = {
-  data: [],
-  status: 'idle', // idle | loading | succeeded | failed
-  error: null,
-};
+    data:  {} as ProductList,
+    status: 'idle', // idle | loading | succeeded | failed
+    error: null,
+  };
+  
 
 // Define an async thunk for API call
 export const fetchData = createAsyncThunk('data/fetchData', async () => {
-  const response = await fetch('https://jsonplaceholder.typicode.com/photos');
+  const response = await axiosInstance.get<ProductList>('/photos');
   console.log('shenu reducer data',response)
-  return response.json();
+  return response.data;
 });
 
 const dataSlice = createSlice({
