@@ -1,43 +1,51 @@
-import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
+import axios from 'axios';
+import { store } from '../redux/store'; // Import Redux store
+import { refreshToken } from '../redux/slices/authslice'; // Action to refresh token
 
-// Create an Axios instance with custom configuration
 const axiosInstance = axios.create({
-  baseURL: 'https://jsonplaceholder.typicode.com/', // Replace with your API base URL
-  timeout: 10000, // Set a timeout for requests (in milliseconds)
-  headers: {
-    'Content-Type': 'application/json',
-  },
+  baseURL: 'https://jsonplaceholder.typicode.com', // Replace with your base URL
 });
 
-// Request interceptor to add tokens or modify request config
+// Add request interceptor to include the access token in headers
 axiosInstance.interceptors.request.use(
-  (config: AxiosRequestConfig) => {
-    // Add authorization token if available
-    const token = 'your-auth-token'; // Replace with a dynamic token retrieval if needed
+  (config) => {
+    const state = store.getState();
+    const token = state.auth.accessToken; // Get access token from Redux store
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+      config.headers['Authorization'] = `Bearer ${token}`;
     }
     return config;
   },
-  (error: AxiosError) => {
-    // Handle request error
+  (error) => {
     return Promise.reject(error);
   }
 );
 
-// Response interceptor to handle responses globally
+// Add response interceptor to handle token expiration
 axiosInstance.interceptors.response.use(
-  (response: AxiosResponse) => {
-    // You can handle global response transformations here
-    return response;
-  },
-  (error: AxiosError) => {
-    // Handle global response errors
-    if (error.response?.status === 401) {
-      // Handle unauthorized errors (e.g., redirect to login)
+  (response) => response, // If the response is fine, return it
+  async (error) => {
+    const originalRequest = error.config;
+    if (error.response.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+      try {
+        // Dispatch the refresh token action to Redux
+        const newToken = await store.dispatch(refreshToken()).unwrap();
+
+        // Update the Authorization header with the new token
+        axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
+        originalRequest.headers['Authorization'] = `Bearer ${newToken}`;
+
+        // Retry the original request with the new token
+        return axiosInstance(originalRequest);
+      } catch (error) {
+        // Handle refresh token failure (logout the user, etc.)
+        return Promise.reject(error);
+      }
     }
     return Promise.reject(error);
   }
 );
 
 export default axiosInstance;
+

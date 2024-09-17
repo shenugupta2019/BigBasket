@@ -91,8 +91,8 @@ ErrorUtils.setGlobalHandler((error, isFatal) => {
       {/* <Counter/>  */}
       {/* <HighPerformanceList/> */}
       {/* <RegisterScreen/> */}
-      {/* <ProductsScreen/> */}
-      <LoginScreen/>
+      <ProductsScreen/>
+      {/* <LoginScreen/> */}
       
     </SafeAreaView>
     </ErrorBoundary>
