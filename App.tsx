@@ -24,6 +24,10 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import NavigationController from './navigation/NavigationController';
+import { NavigationContainer } from '@react-navigation/native';
+import TabNavigator from './navigation/TabNavigator';
+
 
 import HighPerformanceList from './components/HighPerformanceFlatList'
 import ProductsScreen from './screens/ProductsScreen'
@@ -84,22 +88,12 @@ ErrorUtils.setGlobalHandler((error, isFatal) => {
   
   return (
     <Provider store={store}>
-        <ErrorBoundary>
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      {/* <Counter/>  */}
-      {/* <HighPerformanceList/> */}
-      {/* <RegisterScreen/> */}
-      {/* <ProductsScreen/> */}
-      {/* <LoginScreen/> */}
-      <ExampleScreen/>
-      {/* <TodoListScreen/> */}
-      
-    </SafeAreaView>
-    </ErrorBoundary>
+        {/* <ErrorBoundary> */}
+        <NavigationContainer>
+        <TabNavigator />
+      </NavigationContainer>
+  
+    {/* </ErrorBoundary> */}
     </Provider>
   );
 }
