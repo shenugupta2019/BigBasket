@@ -32,6 +32,7 @@ import Counter from './screens/Counter'
 import { Provider } from 'react-redux';
 import { store } from './redux/store'; // Import the store
 import RegisterScreen from './screens/RegistrationScreen';
+import ExampleScreen from './screens/ExampleScreen';
 import LoginScreen from './screens/LoginScreen';
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary'; 
 import { Alert } from 'react-native';
@@ -91,8 +92,9 @@ ErrorUtils.setGlobalHandler((error, isFatal) => {
       {/* <Counter/>  */}
       {/* <HighPerformanceList/> */}
       {/* <RegisterScreen/> */}
-      <ProductsScreen/>
+      {/* <ProductsScreen/> */}
       {/* <LoginScreen/> */}
+      <ExampleScreen/>
       
     </SafeAreaView>
     </ErrorBoundary>
