@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import Typography from '../components/atoms/Typography';
 import Button from '../components/atoms/Button';
+import ButtonWithIcon from '../components/molecules/ButtonWithIcon'
 
 
 const ExampleScreen = () => {
@@ -36,6 +37,21 @@ const ExampleScreen = () => {
   title="Disabled Button"
   onPress={() => console.log('This will not fire')}
   disabled={true}
+/>
+<ButtonWithIcon
+  title="Add to Cart"
+  iconName="cart-outline"
+  onPress={() => console.log('Button pressed!')}
+  iconPosition="left"
+/>
+
+<ButtonWithIcon
+  title="Next"
+  iconName="arrow-forward-outline"
+  onPress={() => console.log('Next button pressed!')}
+  iconPosition="right"
+  backgroundColor="green"
+  color="white"
 />
     </View>
   );
