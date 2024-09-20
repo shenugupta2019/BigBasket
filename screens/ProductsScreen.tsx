@@ -6,8 +6,25 @@ import HighPerformanceList from '../components/HighPerformanceFlatList';
 import { postRequest } from '../serviceLayer/apiClient';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { fetchData } from '../redux/slices/fetchDataSlice';
+import { RootStackParamList } from '../navigation/NavigationController';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native';
 
-const ProductsScreen: React.FC = () => {
+type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Product'>;
+
+type Props = {
+  navigation: HomeScreenNavigationProp;
+};
+type RootStackParamList = {
+  Home: undefined;
+  Details: { id: string; name: string; };
+};
+
+// Define the type for the navigation prop
+
+
+
+const ProductsScreen: React.FC<Props> = ({ navigation }) => {
   const [products, setProducts] = useState<ProductList>();
   const [loading, setLoading] = useState<boolean>(true);
   const dispatch = useAppDispatch();
@@ -43,7 +60,7 @@ const ProductsScreen: React.FC = () => {
 
   return (
     <View>
-     <HighPerformanceList productData={data}/>
+     <HighPerformanceList productData={data} navigation={navigation}/>
     </View>
   );
 };

@@ -40,13 +40,15 @@ interface ListItemProps {
   // );
 
 // Main component with FlatList
-const HighPerformanceList: React.FC = ({productData}) => {
+const HighPerformanceList: React.FC = ({productData,navigation}) => {
 
   console.log('shenu data categories flat list',productData)
 
   const [categories, setCategories] = useState<Category[]>([]);
-  const handleCardPress = () => {
-    console.log('Card pressed!');
+  const handleCardPress = (item:any) => {
+
+   // navigation.navigate('Details', { id: item.id, name: item.name })
+    console.log('Card pressed!',item.name);
   };
   // const renderItem = ({ item }: ListRenderItemInfo<{}>) => <ListItem item={item} />;
 
@@ -61,7 +63,7 @@ const HighPerformanceList: React.FC = ({productData}) => {
       <Card
         title={item.name}
         content={item.description}
-        onPress={handleCardPress}
+        onPress={() => navigation.navigate('Details', { id: item.id, name: item.name })}
         style={styles.customCard}
       />
     </View>

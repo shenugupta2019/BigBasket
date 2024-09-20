@@ -1,34 +1,16 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../navigation/NavigationController';
+import { View, Text } from 'react-native';
 
-type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
+const DetailsScreen = ({ route }) => {
+  console.log('routes params shenu',route.params)
+  const { id, name } = route.params;
 
-type Props = {
-  navigation: HomeScreenNavigationProp;
-};
-
-const DetailsScreen: React.FC<Props> = ({ navigation }) => {
   return (
-    <View style={styles.container}>
-      {/* <Text>Home Screen</Text> */}
-      <Button
-        title="Go to Details"
-        onPress={() =>
-          navigation.navigate('Details', { itemId: 86, otherParam: 'Anything' })
-        }
-      />
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Details for: {name}</Text>
+      <Text>Item ID: {id}</Text>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default DetailsScreen;

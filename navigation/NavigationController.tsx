@@ -4,23 +4,23 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScreen from '../screens/HomeScreen';
+import ProductsScreen from '../screens/ProductsScreen';
+import DetailsScreen from '../screens/DetailsScreen';
 
 // Screen Components
-import DetailsScreen from '../screens/DetailsScreen';
 
 // TypeScript types for the navigation
 export type RootStackParamList = {
   Home: undefined;
-  Details: { itemId: number; otherParam: string };
 };
 
-const Stack = createStackNavigator<RootStackParamList>();
+const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 // Generic Stack Navigator
 const StackNavigator: React.FC = () => (
-  <Stack.Navigator initialRouteName="Home">
-    <Stack.Screen name="Home" component={HomeScreen} />
+  <Stack.Navigator initialRouteName="Product">
+    <Stack.Screen name="Product" component={ProductsScreen} />
     <Stack.Screen name="Details" component={DetailsScreen} />
   </Stack.Navigator>
 );
@@ -38,7 +38,7 @@ const TabNavigator: React.FC = () => (
       tabBarInactiveTintColor: 'gray',
     })}
   >
-    <Tab.Screen name="HomeScreen" component={HomeScreen} />
+    <Tab.Screen name="ProductsScreen" component={ProductsScreen} />
     <Tab.Screen name="DetailsScreen" component={DetailsScreen} />
   </Tab.Navigator>
 );
