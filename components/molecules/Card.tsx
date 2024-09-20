@@ -39,9 +39,9 @@ const styles = StyleSheet.create({
    // backgroundColor: 'white',
     borderRadius: 8,
     padding: 8,
-    marginVertical: 8,
-    height:75,
-    width:75,
+    marginVertical: 18,
+    height:50,
+    width:50,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -58,11 +58,11 @@ const styles = StyleSheet.create({
     marginBottom:18,
   },
   content: {
-    fontSize: 14,
+    fontSize: 10,
     color: '#333',
-    marginTop:12,
-    width:70,
-    height:100
+    marginTop:6,
+    width:300,
+    height:20
   },
 });
 

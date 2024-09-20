@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 import { FlatList, Text, View, StyleSheet, ListRenderItemInfo,Dimensions } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {ProductsList,Category,Product} from '../Model/ProductList'
+import Card from '../components/molecules/Card';
 
 // Example data
 const data = Array.from({ length: 10000 }, (_, index) => `Item ${index + 1}`);
@@ -44,6 +45,9 @@ const HighPerformanceList: React.FC = ({productData}) => {
   console.log('shenu data categories flat list',productData)
 
   const [categories, setCategories] = useState<Category[]>([]);
+  const handleCardPress = () => {
+    console.log('Card pressed!');
+  };
   // const renderItem = ({ item }: ListRenderItemInfo<{}>) => <ListItem item={item} />;
 
    // Fetch data from API or set it manually for testing
@@ -54,8 +58,12 @@ const HighPerformanceList: React.FC = ({productData}) => {
    // Render each item for a given category
    const renderItem = ({ item }: { item: Product }) => (
     <View style={styles.itemContainer}>
-      <Text style={styles.itemName}>{item.name}</Text>
-      <Text style={styles.itemDescription}>{item.description}</Text>
+      <Card
+        title={item.name}
+        content={item.description}
+        onPress={handleCardPress}
+        style={styles.customCard}
+      />
     </View>
   );
 
@@ -102,9 +110,10 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   itemContainer: {
-    padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
+    // flexDirection:'column',
+    // padding: 10,
+    // borderBottomWidth: 1,
+   // borderBottomColor: '#ddd',
   },
   itemName: {
     fontSize: 18,
@@ -114,6 +123,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#666',
   },
+  customCard:{
+    width:60,
+    height:60
+    }
 });
 //   return (
 //     <FlatList

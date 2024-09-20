@@ -23,12 +23,12 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
    
    <StyledContainer justifyContent='flex-start' flexDirection='column' style={styles.container}>
     <HighPerformanceList/>
-   {/* <Card
+   <Card
         title="Card Title 1"
         content="This is the content of the first card."
         onPress={handleCardPress}
         style={styles.customCard}
-      /> */}
+      />
       </StyledContainer>
       {/* <Text>Home Screen</Text> */}
       {/* <ImageComponent

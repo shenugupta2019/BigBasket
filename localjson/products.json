@@ -24,6 +24,34 @@
             "price": 199.99,
             "description": "Noise-cancelling over-ear headphones.",
             "imageUrl": "https://example.com/images/headphones.jpg"
+          },
+          {
+            "id": "1-4",
+            "name": "Headphones",
+            "price": 199.99,
+            "description": "Noise-cancelling over-ear headphones.",
+            "imageUrl": "https://example.com/images/headphones.jpg"
+          },
+          {
+            "id": "1-5",
+            "name": "Headphones",
+            "price": 199.99,
+            "description": "Noise-cancelling over-ear headphones.",
+            "imageUrl": "https://example.com/images/headphones.jpg"
+          },
+          {
+            "id": "1-6",
+            "name": "Headphones",
+            "price": 199.99,
+            "description": "Noise-cancelling over-ear headphones.",
+            "imageUrl": "https://example.com/images/headphones.jpg"
+          },
+          {
+            "id": "1-7",
+            "name": "Headphones",
+            "price": 199.99,
+            "description": "Noise-cancelling over-ear headphones.",
+            "imageUrl": "https://example.com/images/headphones.jpg"
           }
         ]
       },
@@ -44,6 +72,34 @@
             "price": 799.99,
             "description": "Front-loading washing machine with smart features.",
             "imageUrl": "https://example.com/images/washing_machine.jpg"
+          },
+          {
+            "id": "2-2",
+            "name": "Washing Machine",
+            "price": 799.99,
+            "description": "Front-loading washing machine with smart features.",
+            "imageUrl": "https://example.com/images/washing_machine.jpg"
+          },
+          {
+            "id": "2-3",
+            "name": "Washing Machine",
+            "price": 799.99,
+            "description": "Front-loading washing machine with smart features.",
+            "imageUrl": "https://example.com/images/washing_machine.jpg"
+          },
+          {
+            "id": "2-4",
+            "name": "Washing Machine",
+            "price": 799.99,
+            "description": "Front-loading washing machine with smart features.",
+            "imageUrl": "https://example.com/images/washing_machine.jpg"
+          },
+          {
+            "id": "2-5",
+            "name": "Washing Machine",
+            "price": 799.99,
+            "description": "Front-loading washing machine with smart features.",
+            "imageUrl": "https://example.com/images/washing_machine.jpg"
           }
         ]
       },
@@ -60,6 +116,34 @@
           },
           {
             "id": "3-2",
+            "name": "Women's Dress",
+            "price": 49.99,
+            "description": "Stylish summer dress for casual outings.",
+            "imageUrl": "https://example.com/images/dress.jpg"
+          },
+          {
+            "id": "3-2",
+            "name": "Women's Dress",
+            "price": 49.99,
+            "description": "Stylish summer dress for casual outings.",
+            "imageUrl": "https://example.com/images/dress.jpg"
+          },
+          {
+            "id": "3-3",
+            "name": "Women's Dress",
+            "price": 49.99,
+            "description": "Stylish summer dress for casual outings.",
+            "imageUrl": "https://example.com/images/dress.jpg"
+          },
+          {
+            "id": "3-4",
+            "name": "Women's Dress",
+            "price": 49.99,
+            "description": "Stylish summer dress for casual outings.",
+            "imageUrl": "https://example.com/images/dress.jpg"
+          },
+          {
+            "id": "3-5",
             "name": "Women's Dress",
             "price": 49.99,
             "description": "Stylish summer dress for casual outings.",
