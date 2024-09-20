@@ -12,7 +12,8 @@ const ProductsScreen: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const dispatch = useAppDispatch();
   const { data, status, error } = useAppSelector((state) => state.data);
-  console.log('redux state shenu',data,status,error)
+  console.log('redux state shenu from redux new ',data)
+
 
   useEffect(() => {
     dispatch(fetchData());

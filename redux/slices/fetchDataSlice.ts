@@ -3,10 +3,12 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 //import apiClient from '../../serviceLayer/apiClient';
 //import {ProductList} from '../../productServices/productService';
 import axiosInstance from '../../serviceLayer/axiosInstance';
+import {Category, ProductsList} from '../../Model/ProductList'
+import data from '../../localjson/products.json';
 
-export interface ProductList {
-    album: Album[]
-  }
+// export interface ProductList {
+//     album: Album[]
+//   }
 
 export interface Album {
     albumId: number
@@ -18,7 +20,7 @@ export interface Album {
 
 // Define the initial state
 const initialState = {
-    data:  {} as ProductList,
+    data:  {} as ProductsList,
     status: 'idle', // idle | loading | succeeded | failed
     error: null,
   };
@@ -26,9 +28,10 @@ const initialState = {
 
 // Define an async thunk for API call
 export const fetchData = createAsyncThunk('data/fetchData', async () => {
-  const response = await axiosInstance.get<ProductList>('/photos');
-  console.log('shenu reducer data',response)
-  return response.data;
+  // const response = await axiosInstance.get<ProductsList>('/photos');
+  const jsonData:Category[] = data.categories
+  console.log('shenu reducer data',jsonData)
+  return jsonData;
 });
 
 const dataSlice = createSlice({

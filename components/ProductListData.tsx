@@ -2,6 +2,7 @@ import React from 'react';
 import { FlatList, View, Text, StyleSheet, Dimensions } from 'react-native';
 import FastImage from 'react-native-fast-image';
 
+
 const ProductList: React.FC = ({productData}) => {
 console.log('the flat list data empty',productData)
 

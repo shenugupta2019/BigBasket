@@ -1,0 +1,73 @@
+{
+    "categories": [
+      {
+        "id": "1",
+        "name": "Electronics",
+        "products": [
+          {
+            "id": "1-1",
+            "name": "Smartphone",
+            "price": 699.99,
+            "description": "Latest model smartphone with all the features.",
+            "imageUrl": "https://example.com/images/smartphone.jpg"
+          },
+          {
+            "id": "1-2",
+            "name": "Laptop",
+            "price": 1299.99,
+            "description": "High performance laptop for all your needs.",
+            "imageUrl": "https://example.com/images/laptop.jpg"
+          },
+          {
+            "id": "1-3",
+            "name": "Headphones",
+            "price": 199.99,
+            "description": "Noise-cancelling over-ear headphones.",
+            "imageUrl": "https://example.com/images/headphones.jpg"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "name": "Home Appliances",
+        "products": [
+          {
+            "id": "2-1",
+            "name": "Air Conditioner",
+            "price": 499.99,
+            "description": "Energy-efficient air conditioner with remote control.",
+            "imageUrl": "https://example.com/images/ac.jpg"
+          },
+          {
+            "id": "2-2",
+            "name": "Washing Machine",
+            "price": 799.99,
+            "description": "Front-loading washing machine with smart features.",
+            "imageUrl": "https://example.com/images/washing_machine.jpg"
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "name": "Fashion",
+        "products": [
+          {
+            "id": "3-1",
+            "name": "Men's T-Shirt",
+            "price": 19.99,
+            "description": "Comfortable cotton t-shirt available in multiple colors.",
+            "imageUrl": "https://example.com/images/tshirt.jpg"
+          },
+          {
+            "id": "3-2",
+            "name": "Women's Dress",
+            "price": 49.99,
+            "description": "Stylish summer dress for casual outings.",
+            "imageUrl": "https://example.com/images/dress.jpg"
+          }
+        ]
+      }
+      
+    ]
+  }
+  
