@@ -6,6 +6,7 @@ import {
   StyleSheet,
   ListRenderItemInfo,
   Dimensions,
+  TextInput
 } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {ProductsList, Category, Product} from '../Model/ProductList';
@@ -64,7 +65,7 @@ const HighPerformanceList: React.FC = ({productData, navigation}) => {
   useEffect(() => {
     setCategories(productData);
     console.log('shenu data categories useeffect', categories);
-  }, [categories]);
+  }, []);
   // Render each item for a given category
   const renderItem = ({item}: {item: Product}) => (
     <View style={styles.itemContainer}>
@@ -79,16 +80,26 @@ const HighPerformanceList: React.FC = ({productData, navigation}) => {
     </View>
   );
 
-  const searchFilter = (query: string) => {
-    if (query) {
-      const newData = categories.filter(item =>
-        item.name.toLowerCase().includes(query.toLowerCase())
-      );
-      setFilteredData(newData);
+ 
+  // Function to filter data based on the search query
+  const searchFilter = (text: string) => {
+    console.log('search str', text)
+    if (text) {
+      const newData = categories.map(category => {
+        const filteredItems = category.products.filter(item =>
+          item.name.toLowerCase().includes(text.toLowerCase())
+        );
+        if (filteredItems.length > 0) {
+          return { ...category, products: filteredItems };
+        }
+        return null;
+      }).filter(category => category !== null);
+      setFilteredData(newData );
+      setSearch(text);
     } else {
       setFilteredData(categories);
+      setSearch(text);
     }
-    setSearch(query);
   };
 
   // Render the entire list, grouped by category
@@ -101,12 +112,10 @@ const HighPerformanceList: React.FC = ({productData, navigation}) => {
 
       {/* Render Items within the Category */}
       <FlatList
-        data={filteredData}
+        data={item.products}
         keyExtractor={item => item.id.toString()}
         renderItem={renderItem}
-        ListEmptyComponent={() => (
-          <Text style={styles.emptyText}>No items found</Text>
-        )}
+        
       />
     </View>
   );
@@ -117,14 +126,20 @@ const HighPerformanceList: React.FC = ({productData, navigation}) => {
 
   return (
     <>
-    <CustomSearchBar
+    {/* <CustomSearchBar
     placeholder="Search for fruits..."
     value={search}
-    onSearch={searchFilter}
-  />
+    onSearch={(text) => searchFilter(text)}
+  /> */}
+   <TextInput
+        style={styles.textInput}
+        value={search}
+        placeholder="Search items..."
+        onChangeText={(text) => searchFilter(text)}
+      />
     
     <FlatList
-      data={categories}
+      data={filteredData}
       keyExtractor={item => item.name}
       renderItem={renderCategory}
     />
@@ -145,12 +160,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     color: '#333',
   },
-  emptyText: {
-    textAlign: 'center',
-    marginTop: 20,
-    fontSize: 16,
-    color: '#888',
-  },
   itemContainer: {
     // flexDirection:'column',
     // padding: 10,
@@ -168,6 +177,14 @@ const styles = StyleSheet.create({
   customCard: {
     width: 60,
     height: 60,
+  },
+  textInput: {
+    height: 40,
+    fontSize: 16,
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    marginBottom: 20,
+    backgroundColor: '#e6e6e6',
   },
 });
 //   return (

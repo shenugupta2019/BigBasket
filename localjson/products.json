@@ -74,13 +74,6 @@
             "imageUrl": "https://example.com/images/washing_machine.jpg"
           },
           {
-            "id": "2-2",
-            "name": "Washing Machine",
-            "price": 799.99,
-            "description": "Front-loading washing machine with smart features.",
-            "imageUrl": "https://example.com/images/washing_machine.jpg"
-          },
-          {
             "id": "2-3",
             "name": "Washing Machine",
             "price": 799.99,
@@ -96,6 +89,13 @@
           },
           {
             "id": "2-5",
+            "name": "Washing Machine",
+            "price": 799.99,
+            "description": "Front-loading washing machine with smart features.",
+            "imageUrl": "https://example.com/images/washing_machine.jpg"
+          },
+          {
+            "id": "2-6",
             "name": "Washing Machine",
             "price": 799.99,
             "description": "Front-loading washing machine with smart features.",
@@ -122,13 +122,6 @@
             "imageUrl": "https://example.com/images/dress.jpg"
           },
           {
-            "id": "3-2",
-            "name": "Women's Dress",
-            "price": 49.99,
-            "description": "Stylish summer dress for casual outings.",
-            "imageUrl": "https://example.com/images/dress.jpg"
-          },
-          {
             "id": "3-3",
             "name": "Women's Dress",
             "price": 49.99,
@@ -144,6 +137,13 @@
           },
           {
             "id": "3-5",
+            "name": "Women's Dress",
+            "price": 49.99,
+            "description": "Stylish summer dress for casual outings.",
+            "imageUrl": "https://example.com/images/dress.jpg"
+          },
+          {
+            "id": "3-6",
             "name": "Women's Dress",
             "price": 49.99,
             "description": "Stylish summer dress for casual outings.",
