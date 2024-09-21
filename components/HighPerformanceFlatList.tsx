@@ -1,18 +1,26 @@
-import React,{useState,useEffect} from 'react';
-import { FlatList, Text, View, StyleSheet, ListRenderItemInfo,Dimensions } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {
+  FlatList,
+  Text,
+  View,
+  StyleSheet,
+  ListRenderItemInfo,
+  Dimensions,
+} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {ProductsList,Category,Product} from '../Model/ProductList'
+import {ProductsList, Category, Product} from '../Model/ProductList';
 import Card from '../components/molecules/Card';
+import CustomSearchBar from '../components/molecules/CustomSearchBar'; 
 
 // Example data
-const data = Array.from({ length: 10000 }, (_, index) => `Item ${index + 1}`);
+const data = Array.from({length: 10000}, (_, index) => `Item ${index + 1}`);
 
 interface ListItemProps {
-    albumId: number
-    id: number
-    title: string
-    url: string
-    thumbnailUrl: string
+  albumId: number;
+  id: number;
+  title: string;
+  url: string;
+  thumbnailUrl: string;
 }
 
 // // Individual list item component
@@ -32,54 +40,73 @@ interface ListItemProps {
 //   );
 // });
 
-  // // Header component
-  // const renderHeader = () => (
-  //   <View style={styles.header}>
-  //     <Text style={styles.headerText}>Shop By Category</Text>
-  //   </View>
-  // );
+// // Header component
+// const renderHeader = () => (
+//   <View style={styles.header}>
+//     <Text style={styles.headerText}>Shop By Category</Text>
+//   </View>
+// );
 
 // Main component with FlatList
-const HighPerformanceList: React.FC = ({productData,navigation}) => {
-
-  console.log('shenu data categories flat list',productData)
+const HighPerformanceList: React.FC = ({productData, navigation}) => {
+  console.log('shenu data categories flat list', productData);
+  const [search, setSearch] = useState('');
+  const [filteredData, setFilteredData] = useState(productData);
 
   const [categories, setCategories] = useState<Category[]>([]);
-  const handleCardPress = (item:any) => {
-
-   // navigation.navigate('Details', { id: item.id, name: item.name })
-    console.log('Card pressed!',item.name);
+  const handleCardPress = (item: any) => {
+    // navigation.navigate('Details', { id: item.id, name: item.name })
+    console.log('Card pressed!', item.name);
   };
   // const renderItem = ({ item }: ListRenderItemInfo<{}>) => <ListItem item={item} />;
 
-   // Fetch data from API or set it manually for testing
-   useEffect(() => {
-    setCategories(productData); 
-    console.log('shenu data categories useeffect',categories)
-  }, [productData]);
-   // Render each item for a given category
-   const renderItem = ({ item }: { item: Product }) => (
+  // Fetch data from API or set it manually for testing
+  useEffect(() => {
+    setCategories(productData);
+    console.log('shenu data categories useeffect', categories);
+  }, [categories]);
+  // Render each item for a given category
+  const renderItem = ({item}: {item: Product}) => (
     <View style={styles.itemContainer}>
       <Card
         title={item.name}
-        content={item.description}
-        onPress={() => navigation.navigate('Details', { id: item.id, name: item.name })}
+        content={item.name}
+        onPress={() =>
+          navigation.navigate('Details', {id: item.id, name: item.name})
+        }
         style={styles.customCard}
       />
     </View>
   );
 
-   // Render the entire list, grouped by category
-   const renderCategory = ({ item }: { item: Category }) => (
+  const searchFilter = (query: string) => {
+    if (query) {
+      const newData = categories.filter(item =>
+        item.name.toLowerCase().includes(query.toLowerCase())
+      );
+      setFilteredData(newData);
+    } else {
+      setFilteredData(categories);
+    }
+    setSearch(query);
+  };
+
+  // Render the entire list, grouped by category
+  const renderCategory = ({item}: {item: Category}) => (
     <View style={styles.categoryContainer}>
       {/* Render Category Header */}
       <Text style={styles.categoryHeader}>{item.name}</Text>
+       {/* Custom Search Bar */}
+    
 
       {/* Render Items within the Category */}
       <FlatList
-        data={item.products}
-        keyExtractor={(item) => item.id.toString()}
+        data={filteredData}
+        keyExtractor={item => item.id.toString()}
         renderItem={renderItem}
+        ListEmptyComponent={() => (
+          <Text style={styles.emptyText}>No items found</Text>
+        )}
       />
     </View>
   );
@@ -88,15 +115,22 @@ const HighPerformanceList: React.FC = ({productData,navigation}) => {
   //   return <ActivityIndicator size="large" color="#0000ff" />;
   // }
 
-
   return (
+    <>
+    <CustomSearchBar
+    placeholder="Search for fruits..."
+    value={search}
+    onSearch={searchFilter}
+  />
+    
     <FlatList
       data={categories}
-      keyExtractor={(item) => item.name}
+      keyExtractor={item => item.name}
       renderItem={renderCategory}
     />
+    </>
   );
-}
+};
 
 const styles = StyleSheet.create({
   categoryContainer: {
@@ -111,11 +145,17 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     color: '#333',
   },
+  emptyText: {
+    textAlign: 'center',
+    marginTop: 20,
+    fontSize: 16,
+    color: '#888',
+  },
   itemContainer: {
     // flexDirection:'column',
     // padding: 10,
     // borderBottomWidth: 1,
-   // borderBottomColor: '#ddd',
+    // borderBottomColor: '#ddd',
   },
   itemName: {
     fontSize: 18,
@@ -125,10 +165,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#666',
   },
-  customCard:{
-    width:60,
-    height:60
-    }
+  customCard: {
+    width: 60,
+    height: 60,
+  },
 });
 //   return (
 //     <FlatList

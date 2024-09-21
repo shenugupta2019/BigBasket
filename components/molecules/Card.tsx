@@ -1,8 +1,14 @@
 // components/Card.tsx
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ViewStyle, TextStyle } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ViewStyle,
+  TextStyle,
+} from 'react-native';
 import ImageComponent from '../atoms/ImageComponent';
-
 
 interface CardProps {
   title: string;
@@ -23,25 +29,27 @@ const Card: React.FC<CardProps> = ({
 }) => {
   return (
     <TouchableOpacity onPress={onPress} style={[styles.card, style]}>
-     <ImageComponent
+      <ImageComponent
         source="https://dummyimage.com/300x200/000/fff"
         width={75}
         height={75}
         borderRadius={10}
       />
-      <Text numberOfLines={2} style={[styles.content, contentStyle]}>{content}</Text>
+      <Text numberOfLines={2} style={[styles.content, contentStyle]}>
+        {content}
+      </Text>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   card: {
-   // backgroundColor: 'white',
+    // backgroundColor: 'white',
     borderRadius: 8,
     padding: 8,
     marginVertical: 18,
-    height:50,
-    width:50,
+    height: 50,
+    width: 50,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -54,15 +62,15 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: 'bold',
-    marginTop:12,
-    marginBottom:18,
+    marginTop: 12,
+    marginBottom: 18,
   },
   content: {
     fontSize: 10,
     color: '#333',
-    marginTop:6,
-    width:300,
-    height:20
+    marginTop: 6,
+    width: 300,
+    height: 20,
   },
 });
 
