@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, ActivityIndicator } from 'react-native';
+import { View, Text, FlatList, ActivityIndicator,Button } from 'react-native';
 import { getProdcuts,ProductList } from '../productServices/productService';
 import ProductListData from '../components/ProductListData';
 import HighPerformanceList from '../components/HighPerformanceFlatList';
@@ -9,6 +9,7 @@ import { fetchData } from '../redux/slices/fetchDataSlice';
 import { RootStackParamList } from '../navigation/NavigationController';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
+import ReusableModal from '../components/organism/ReusableModal';
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Product'>;
 
@@ -25,6 +26,7 @@ type RootStackParamList = {
 
 
 const ProductsScreen: React.FC<Props> = ({ navigation }) => {
+  const [modalVisible, setModalVisible] = useState(false);
   const [products, setProducts] = useState<ProductList>();
   const [loading, setLoading] = useState<boolean>(true);
   const dispatch = useAppDispatch();
@@ -60,6 +62,12 @@ const ProductsScreen: React.FC<Props> = ({ navigation }) => {
 
   return (
     <View>
+       <Button title="Open Modal" onPress={() => setModalVisible(true)} />
+       <ReusableModal
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+        title="Hello Modal" children={undefined}       
+      />
      <HighPerformanceList productData={data} navigation={navigation}/>
     </View>
   );
