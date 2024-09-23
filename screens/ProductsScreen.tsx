@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, FlatList, ActivityIndicator, Button} from 'react-native';
+import {View, Text, FlatList, ActivityIndicator, Button,StyleSheet} from 'react-native';
 import {getProdcuts, ProductList} from '../productServices/productService';
 import ProductListData from '../components/ProductListData';
 import HighPerformanceList from '../components/HighPerformanceFlatList';
@@ -14,6 +14,7 @@ import {useNavigation} from '@react-navigation/native';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 import {TabParamList} from '../navigation/TabParamsList';
 import {HomeStackParamList} from '../navigation/HomeStackParamList';
+import QuantitySelector from '../components/molecules/QuantitySelector';
 
 type Props = {
   navigation: HomeScreenNavigationProp;
@@ -74,8 +75,14 @@ const ProductsScreen: React.FC = ({navigation}) => {
     return <Text>Error: {error}</Text>;
   }
 
+  const handleQuantityChange = (quantity: number) => {
+    console.log('Quantity changed:', quantity);
+  };
+
+
   return (
     <View>
+     <QuantitySelector initialQuantity={1} onQuantityChange={handleQuantityChange} buttonStyle={styles.btnStyle} />
       <Button title="Open Modal" onPress={() => setModalVisible(true)} />
       <ReusableModal
         visible={modalVisible}
@@ -89,3 +96,26 @@ const ProductsScreen: React.FC = ({navigation}) => {
 };
 
 export default ProductsScreen;
+
+const styles = StyleSheet.create({
+  container: {
+   // flex: 1,
+    justifyContent: 'center',
+    padding: 16,
+    backgroundColor:'pink'
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderBottomWidth: 1,
+    marginBottom: 12,
+    paddingHorizontal: 8,
+  },
+  btnStyle:{
+    backgroundColor: 'red',
+    borderRadius: 5,
+    padding: 10,
+    marginHorizontal: 5,
+
+  }
+});
