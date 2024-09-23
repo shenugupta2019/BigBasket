@@ -24,9 +24,10 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import NavigationController from './navigation/NavigationController';
+import NavigationController from './navigation/NavigationControllerWithTab';
 import { NavigationContainer } from '@react-navigation/native';
 import TabNavigator from './navigation/TabNavigator';
+import NavigationControllerWithTab from './navigation/NavigationControllerWithTab';
 
 
 import HighPerformanceList from './components/HighPerformanceFlatList'
@@ -89,9 +90,7 @@ ErrorUtils.setGlobalHandler((error, isFatal) => {
   return (
     <Provider store={store}>
         {/* <ErrorBoundary> */}
-        <NavigationContainer>
-        <TabNavigator />
-      </NavigationContainer>
+      <NavigationControllerWithTab useTabs={true}/>
   
     {/* </ErrorBoundary> */}
     </Provider>

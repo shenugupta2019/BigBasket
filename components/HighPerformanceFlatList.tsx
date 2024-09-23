@@ -12,6 +12,7 @@ import FastImage from 'react-native-fast-image';
 import {ProductsList, Category, Product} from '../Model/ProductList';
 import Card from '../components/molecules/Card';
 import CustomSearchBar from '../components/molecules/CustomSearchBar'; 
+import { useNavigation } from '@react-navigation/native';
 
 // Example data
 const data = Array.from({length: 10000}, (_, index) => `Item ${index + 1}`);
@@ -51,6 +52,7 @@ interface ListItemProps {
 // Main component with FlatList
 const HighPerformanceList: React.FC = ({productData, navigation}) => {
   console.log('shenu data categories flat list', productData);
+  console.log('shenu data categories flat list navigation', navigation);
   const [search, setSearch] = useState('');
   const [filteredData, setFilteredData] = useState(productData);
 
@@ -73,6 +75,7 @@ const HighPerformanceList: React.FC = ({productData, navigation}) => {
         title={item.name}
         content={item.name}
         onPress={() =>
+          
           navigation.navigate('Details', {id: item.id, name: item.name})
         }
         style={styles.customCard}

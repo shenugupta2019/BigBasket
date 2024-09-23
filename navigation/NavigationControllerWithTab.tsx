@@ -6,7 +6,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScreen from '../screens/HomeScreen';
 import ProductsScreen from '../screens/ProductsScreen';
 import DetailsScreen from '../screens/DetailsScreen';
-
+import RegistrationScreen from '../screens/RegistrationScreen';
+import { TabParamList } from './TabParamsList'; // Types for tabs
+import { HomeStackParamList } from './HomeStackParamList'; // Types for HomeStack
 // Screen Components
 
 // TypeScript types for the navigation
@@ -14,16 +16,28 @@ export type RootStackParamList = {
   Home: undefined;
 };
 
-const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
+const SettingsStack = createStackNavigator();
+// Tab Navigator
+const Tab = createBottomTabNavigator<TabParamList>();
+// Stack Navigator for Home Tab
+const HomeStack = createStackNavigator<HomeStackParamList>();
 
 // Generic Stack Navigator
 const StackNavigator: React.FC = () => (
-  <Stack.Navigator initialRouteName="Product">
-    <Stack.Screen name="Product" component={ProductsScreen} />
-    <Stack.Screen name="Details" component={DetailsScreen} />
-  </Stack.Navigator>
+  <HomeStack.Navigator initialRouteName="Product">
+    <HomeStack.Screen name="Product" component={ProductsScreen}  options={{ headerShown: false }} />
+    <HomeStack.Screen name="Details" component={DetailsScreen} />
+  </HomeStack.Navigator>
 );
+
+// Generic Stack Navigator
+const SettingsNavigator: React.FC = () => (
+  <SettingsStack.Navigator initialRouteName="RegistrationScreen">
+    <SettingsStack.Screen name="RegistrationScreen" component={ProductsScreen} />
+    <SettingsStack.Screen name="ProductsScreen" component={ProductsScreen} />
+  </SettingsStack.Navigator>
+);
+
 
 // Generic Tab Navigator
 const TabNavigator: React.FC = () => (
@@ -38,13 +52,13 @@ const TabNavigator: React.FC = () => (
       tabBarInactiveTintColor: 'gray',
     })}
   >
-    <Tab.Screen name="ProductsScreen" component={ProductsScreen} />
-    <Tab.Screen name="DetailsScreen" component={DetailsScreen} />
+    <Tab.Screen name="Home" component={StackNavigator} />
+    <Tab.Screen name="SettingsTab" component={SettingsNavigator} />
   </Tab.Navigator>
 );
 
 // The main NavigationController that you can toggle between Stack and Tab navigation
-const NavigationController: React.FC<{ useTabs?: boolean }> = ({ useTabs = true }) => {
+const NavigationControllerWithTab: React.FC<{ useTabs?: boolean }> = ({ useTabs = true }) => {
   return (
     <NavigationContainer>
       {useTabs ? <TabNavigator /> : <StackNavigator />}
@@ -52,4 +66,4 @@ const NavigationController: React.FC<{ useTabs?: boolean }> = ({ useTabs = true 
   );
 };
 
-export default NavigationController;
+export default NavigationControllerWithTab;
