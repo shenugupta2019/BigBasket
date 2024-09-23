@@ -25,6 +25,7 @@ interface ListItemProps {
   thumbnailUrl: string;
 }
 
+const ITEM_WIDTH = 100; 
 // // Individual list item component
 // const ListItem: React.FC<ListItemProps> = React.memo(({ item }) => {
 //   return (
@@ -51,6 +52,27 @@ interface ListItemProps {
 
 // Main component with FlatList
 const HighPerformanceList: React.FC = ({productData, navigation}) => {
+  const [numColumns, setNumColumns] = useState(1);
+  // Calculate the number of columns based on screen width
+  const calculateColumns = () => {
+    const screenWidth = Dimensions.get('window').width;
+    const columns = Math.floor(screenWidth / ITEM_WIDTH);
+    setNumColumns(columns);
+  };
+
+  useEffect(() => {
+    // Run on component mount and when the screen size changes
+    calculateColumns();
+    
+    // Add event listener for screen orientation or size changes
+    const subscription = Dimensions.addEventListener('change', calculateColumns);
+
+    // Clean up the event listener on unmount
+    return () => {
+      subscription?.remove();
+    };
+  }, []);
+  
   console.log('shenu data categories flat list', productData);
   console.log('shenu data categories flat list navigation', navigation);
   const [search, setSearch] = useState('');
@@ -116,8 +138,13 @@ const HighPerformanceList: React.FC = ({productData, navigation}) => {
       {/* Render Items within the Category */}
       <FlatList
         data={item.products}
-        keyExtractor={item => item.id.toString()}
+        keyExtractor={(item) => item.id}
+        numColumns={numColumns}
+        columnWrapperStyle={numColumns > 1 ? styles.row : null} // Conditionally apply columnWrapperStyle
         renderItem={renderItem}
+        key={numColumns} // Force re-render when number of columns changes
+        ListFooterComponent={<View style={{ height: 50 }} />}
+        
         
       />
     </View>
@@ -145,6 +172,7 @@ const HighPerformanceList: React.FC = ({productData, navigation}) => {
       data={filteredData}
       keyExtractor={item => item.name}
       renderItem={renderCategory}
+      ListFooterComponent={<View style={{ height: 50 }} />} // Extra space at the bottom
     />
     </>
   );
@@ -162,6 +190,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
     color: '#333',
+  },
+  row: {
+    justifyContent: 'space-between', // Distribute items evenly in each row
   },
   itemContainer: {
     // flexDirection:'column',
