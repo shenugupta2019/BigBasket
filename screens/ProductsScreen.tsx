@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, FlatList, ActivityIndicator, Button,StyleSheet} from 'react-native';
+import {View, Text, FlatList, ActivityIndicator, Button,StyleSheet,Alert} from 'react-native';
 import {getProdcuts, ProductList} from '../productServices/productService';
 import ProductListData from '../components/ProductListData';
 import HighPerformanceList from '../components/HighPerformanceFlatList';
@@ -15,6 +15,7 @@ import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 import {TabParamList} from '../navigation/TabParamsList';
 import {HomeStackParamList} from '../navigation/HomeStackParamList';
 import QuantitySelector from '../components/molecules/QuantitySelector';
+import SquareButtonWithImage from '../components/molecules/SquareButtonWithImage';
 
 type Props = {
   navigation: HomeScreenNavigationProp;
@@ -78,10 +79,19 @@ const ProductsScreen: React.FC = ({navigation}) => {
   const handleQuantityChange = (quantity: number) => {
     console.log('Quantity changed:', quantity);
   };
+  const handlePress = () => {
+    Alert.alert('Button Pressed');
+  };
 
 
   return (
     <View>
+       <SquareButtonWithImage
+        imageSource={require('../assets/images/image1.png')} // Local image
+        size={60}  // Button size (optional)
+        onPress={handlePress}
+        style={styles.customButtonStyle}  // Custom button style (optional)
+      />
      <QuantitySelector initialQuantity={1} onQuantityChange={handleQuantityChange} buttonStyle={styles.btnStyle} />
       <Button title="Open Modal" onPress={() => setModalVisible(true)} />
       <ReusableModal
@@ -116,6 +126,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     marginHorizontal: 5,
-
-  }
+  },
+  customButtonStyle: {
+    backgroundColor: 'red',  // Custom background color for the button
+  },
 });
