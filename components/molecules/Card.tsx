@@ -9,6 +9,7 @@ import {
   TextStyle,
 } from 'react-native';
 import ImageComponent from '../atoms/ImageComponent';
+import ImageWithText from '../molecules/ImageWithText';
 
 interface CardProps {
   title: string;
@@ -29,12 +30,19 @@ const Card: React.FC<CardProps> = ({
 }) => {
   return (
     <TouchableOpacity onPress={onPress} style={[styles.card, style]}>
+      <View style={styles.imageView}>
       <ImageComponent
-        source="https://dummyimage.com/300x200/000/fff"
+       // source="https://dummyimage.com/300x200/000/fff"
         width={75}
         height={75}
         borderRadius={10}
       />
+    <ImageWithText
+          imageSource={require('../../assets/images/image1.png')}  // Local image
+          title="20%"
+          description="This is a description of the sample item."
+        />
+      </View>
       <Text numberOfLines={2} style={[styles.content, contentStyle]}>
         {content}
       </Text>
@@ -48,8 +56,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 8,
     marginVertical: 18,
-    height: 50,
-    width: 50,
+    height: 180,
+    width: 180,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -58,6 +66,18 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 2, // For Android shadow
+  },
+  imageView:{
+    flexDirection:'row',
+    backgroundColor:'yellow',
+    width: 60,
+    height: 60,
+
+  },
+  imageStyle:{
+  position:'absolute',
+  right:80,
+  backgroundColor:'yellow'
   },
   title: {
     fontSize: 18,

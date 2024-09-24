@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Image, ImageProps, StyleSheet, ImageSourcePropType, ImageStyle, View, ActivityIndicator } from 'react-native';
 
 interface GenericImageProps extends Omit<ImageProps, 'source'> {
-  source: string | ImageSourcePropType;
+  source?: string | ImageSourcePropType;
   width?: ImageStyle['width'];  // Adjust width type to match ImageStyle
   height?: ImageStyle['height']; // Adjust height type to match ImageStyle
   borderRadius?: number;
