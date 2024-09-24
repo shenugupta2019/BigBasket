@@ -32,37 +32,43 @@ const Card: React.FC<CardProps> = ({
   return (
     <>
     <TouchableOpacity onPress={onPress} style={[styles.card, style]}>
-      <View style={styles.imageView}>
+    
+    <View style={styles.imageView}>
       <ImageComponent
        // source="https://dummyimage.com/300x200/000/fff"
         width={75}
         height={75}
         borderRadius={10}
       />
-    <ImageWithText
+    {/* <ImageWithText
           imageSource={require('../../assets/images/image1.png')}  // Local image
           title="20%"
           description="This is a description of the sample item."
-        />
+        /> */}
       </View>
-      <Text numberOfLines={2} style={[styles.content, contentStyle]}>
+    
+
+      
+   
+    </TouchableOpacity>
+    <Text numberOfLines={1} style={[styles.content, contentStyle]}>
         {content}
       </Text>
      
-    </TouchableOpacity>
-     <StrikethroughTextExample />
+     {/* <StrikethroughTextExample /> */}
      </>
   );
 };
 
 const styles = StyleSheet.create({
   card: {
-     backgroundColor: 'red',
+    flex:1,
+    backgroundColor: 'yellow',
     borderRadius: 8,
    // padding: 8,
     marginVertical: 18,
-    height: 400,
-    width: 400,
+    height: 20,
+    width: 120,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -74,16 +80,18 @@ const styles = StyleSheet.create({
   },
   imageView:{
     flexDirection:'row',
-    backgroundColor:'yellow',
-    width: 60,
-    height: 60,
-    marginTop:0
+    backgroundColor:'green',
+   width: 40,
+    height: 40,
+    marginTop:0,
+    marginBottom:30
 
   },
   imageStyle:{
   position:'absolute',
   right:80,
-  backgroundColor:'yellow'
+  backgroundColor:'yellow',
+  marginBottom:30
   },
   title: {
     fontSize: 18,
@@ -93,8 +101,8 @@ const styles = StyleSheet.create({
   },
   content: {
     fontSize: 10,
-    color: '#333',
-    marginTop: 6,
+    color: 'black',
+   // marginTop: 60,
     width: 300,
     height: 20,
   },

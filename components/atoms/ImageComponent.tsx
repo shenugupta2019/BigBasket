@@ -16,8 +16,8 @@ interface GenericImageProps extends Omit<ImageProps, 'source'> {
 const ImageComponent: React.FC<GenericImageProps> = ({
   source,
   width = '100%',
-  height = 200,
-  borderRadius = 0,
+  height = 60,
+  borderRadius = 20,
   style,
   placeholder,
   errorImage,
@@ -32,15 +32,15 @@ const ImageComponent: React.FC<GenericImageProps> = ({
     typeof source === 'string' ? { uri: source } : source;
 
   return (
-    <View style={{ width, height }}>
+    <View style={{ width, height:60,backgroundColor:'blue' }}>
       {isLoading && placeholder && (
         <Image
           source={placeholder}
-          style={[styles.image, { width, height, borderRadius }, style]}
+          style={[styles.image, { width, height:height, borderRadius }, style]}
         />
       )}
       <Image
-        style={[styles.image, { width, height, borderRadius }, style]}
+        style={[styles.image, { width, height:height, borderRadius }, style]}
         source={imageSource}
         onLoad={() => setIsLoading(false)}
         onError={() => setIsError(true)}
@@ -53,6 +53,7 @@ const ImageComponent: React.FC<GenericImageProps> = ({
 
 const styles = StyleSheet.create({
   image: {
+    height:60,
     resizeMode: 'cover',
   },
   loadingIndicator: {
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
     top: '50%',
     left: '50%',
     marginLeft: -15,
-    marginTop: -15,
+   marginTop: -15,
   },
 });
 

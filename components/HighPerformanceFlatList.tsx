@@ -55,18 +55,19 @@ const ITEM_WIDTH = 100;
 const HighPerformanceList: React.FC = ({productData, navigation}) => {
   const [numColumns, setNumColumns] = useState(1);
   // Calculate the number of columns based on screen width
-  const calculateColumns = () => {
-    const screenWidth = Dimensions.get('window').width;
-    const columns = Math.floor(screenWidth / ITEM_WIDTH);
-    setNumColumns(columns);
+  const { width } = Dimensions.get('window');
+  const calculateNumColumns = () => {
+    const itemWidth = 100;  // Set your item width
+    const numColumns = Math.floor(width / itemWidth);  // Calculate number of columns based on screen width
+    return numColumns >= 3 ? numColumns : 3;  // Ensure a minimum of 3 columns
   };
 
   useEffect(() => {
     // Run on component mount and when the screen size changes
-    calculateColumns();
+    calculateNumColumns();
     
     // Add event listener for screen orientation or size changes
-    const subscription = Dimensions.addEventListener('change', calculateColumns);
+    const subscription = Dimensions.addEventListener('change', calculateNumColumns);
 
     // Clean up the event listener on unmount
     return () => {
@@ -95,8 +96,8 @@ const HighPerformanceList: React.FC = ({productData, navigation}) => {
   const renderItem = ({item}: {item: Product}) => (
     <View style={styles.itemContainer}>
       <Card
-        title={item.name}
-        content={item.name}
+        title={item.name ? item.name : 'new item'}
+        content={item.name ? item.name : 'new item'}
         onPress={() =>
           
           navigation.navigate('Details', {id: item.id, name: item.name})
@@ -140,13 +141,11 @@ const HighPerformanceList: React.FC = ({productData, navigation}) => {
       <FlatList
         data={item.products}
         keyExtractor={(item) => item.id}
-        numColumns={numColumns}
-        columnWrapperStyle={numColumns > 1 ? styles.row : null} // Conditionally apply columnWrapperStyle
+        numColumns={calculateNumColumns()} 
+       columnWrapperStyle={numColumns > 1 ? styles.row : null} // Conditionally apply columnWrapperStyle
         renderItem={renderItem}
         key={numColumns} // Force re-render when number of columns changes
         ListFooterComponent={<View style={{ height: 50 }} />}
-        
-        
       />
     </View>
   );
@@ -173,7 +172,7 @@ const HighPerformanceList: React.FC = ({productData, navigation}) => {
       data={filteredData}
       keyExtractor={item => item.name}
       renderItem={renderCategory}
-      ListFooterComponent={<View style={{ height: 50 }} />} // Extra space at the bottom
+     // ListFooterComponent={<View style={{ height: 50 }} />} // Extra space at the bottom
     />
     </>
   );
@@ -185,6 +184,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#f9f9f9',
     padding: 10,
     borderRadius: 8,
+    flex: 1,
+     margin: 5
   },
   categoryHeader: {
     fontSize: 22,
@@ -196,6 +197,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between', // Distribute items evenly in each row
   },
   itemContainer: {
+    flex: 1, margin: 5 
     // flexDirection:'column',
     // padding: 10,
     // borderBottomWidth: 1,

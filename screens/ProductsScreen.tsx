@@ -88,7 +88,7 @@ const ProductsScreen: React.FC = ({navigation}) => {
 
   return (
     <View>
-       <SquareButtonWithImage
+       {/* <SquareButtonWithImage
         imageSource={require('../assets/images/image1.png')} // Local image
         size={60}  // Button size (optional)
         onPress={handlePress}
@@ -101,7 +101,7 @@ const ProductsScreen: React.FC = ({navigation}) => {
         onClose={() => setModalVisible(false)}
         title="Hello Modal"
         children={undefined}
-      />
+      /> */}
       <HighPerformanceList productData={data} navigation={navigation} />
     </View>
   );

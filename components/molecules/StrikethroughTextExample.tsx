@@ -14,14 +14,24 @@ const StrikethroughTextExample: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    //flex: 1,
+   // flex: 1,
    // justifyContent: 'center',
-   // alignItems: 'center',
-    marginTop:10,
-    backgroundColor: 'yellow',
+   alignItems: 'flex-start',
+   position: 'absolute',
+   marginBottom:30,
+   height:20,
+   top: 80,   // Positive values for positioning
+  // left: 20,  // Positive values for positioning
+    backgroundColor: 'green',
   },
   textContainer: {
-    padding: 20, // Adding padding to ensure spacing around the text
+    position: 'relative',
+    // top: 10,   // Positive values for positioning
+    // left: 20,
+    top:85,
+    left:0,
+    marginBottom:30
+   // padding: 20, // Adding padding to ensure spacing around the text
   },
   strikeThroughText: {
     textDecorationLine: 'line-through', // Apply line-through
@@ -29,6 +39,8 @@ const styles = StyleSheet.create({
     textDecorationStyle: 'solid',       // Optional: change the style of the strike
     fontSize: 8,
     color: 'red',
+    marginBottom:30,
+    backgroundColor: 'blue',
   },
   normalText: {
     fontSize: 18,
