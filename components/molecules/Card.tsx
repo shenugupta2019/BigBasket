@@ -54,8 +54,16 @@ const Card: React.FC<CardProps> = ({
     <Text numberOfLines={1} style={[styles.content, contentStyle]}>
         {content}
       </Text>
+      <Text numberOfLines={1} style={[styles.content, contentStyle]}>
+        {content}
+      </Text>
+      <Text numberOfLines={1} style={[styles.content, contentStyle]}>
+        {content}
+      </Text>
      
-     {/* <StrikethroughTextExample /> */}
+     
+     
+     <StrikethroughTextExample />
      </>
   );
 };
@@ -102,7 +110,7 @@ const styles = StyleSheet.create({
   content: {
     fontSize: 10,
     color: 'black',
-   // marginTop: 60,
+    marginTop: 30,
     width: 300,
     height: 20,
   },

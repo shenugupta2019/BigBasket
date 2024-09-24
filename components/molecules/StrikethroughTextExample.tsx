@@ -20,9 +20,9 @@ const styles = StyleSheet.create({
    position: 'absolute',
    marginBottom:30,
    height:20,
-   top: 80,   // Positive values for positioning
+   top: 250,   // Positive values for positioning
   // left: 20,  // Positive values for positioning
-    backgroundColor: 'green',
+   // backgroundColor: 'green',
   },
   textContainer: {
     position: 'relative',
@@ -38,9 +38,10 @@ const styles = StyleSheet.create({
     textDecorationColor: 'red',         // Optional: change the color of the strike
     textDecorationStyle: 'solid',       // Optional: change the style of the strike
     fontSize: 8,
-    color: 'red',
-    marginBottom:30,
-    backgroundColor: 'blue',
+    color: 'black',
+    marginTop:-80,
+   // marginBottom:30,
+    //backgroundColor: 'red',
   },
   normalText: {
     fontSize: 18,

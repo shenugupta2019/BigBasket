@@ -32,7 +32,7 @@ const ImageComponent: React.FC<GenericImageProps> = ({
     typeof source === 'string' ? { uri: source } : source;
 
   return (
-    <View style={{ width, height:60,backgroundColor:'blue' }}>
+    <View style={{ width, height:100,backgroundColor:'blue' }}>
       {isLoading && placeholder && (
         <Image
           source={placeholder}
