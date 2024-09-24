@@ -14,6 +14,7 @@ import Card from '../components/molecules/Card';
 import CustomSearchBar from '../components/molecules/CustomSearchBar'; 
 import { useNavigation } from '@react-navigation/native';
 
+
 // Example data
 const data = Array.from({length: 10000}, (_, index) => `Item ${index + 1}`);
 

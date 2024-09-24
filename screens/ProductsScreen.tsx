@@ -16,6 +16,7 @@ import {TabParamList} from '../navigation/TabParamsList';
 import {HomeStackParamList} from '../navigation/HomeStackParamList';
 import QuantitySelector from '../components/molecules/QuantitySelector';
 import SquareButtonWithImage from '../components/molecules/SquareButtonWithImage';
+import StrikethroughTextExample from '../components/molecules/StrikethroughTextExample';
 
 
 type Props = {

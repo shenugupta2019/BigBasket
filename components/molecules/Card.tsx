@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import ImageComponent from '../atoms/ImageComponent';
 import ImageWithText from '../molecules/ImageWithText';
+import StrikethroughTextExample from '../molecules/StrikethroughTextExample';
 
 interface CardProps {
   title: string;
@@ -29,6 +30,7 @@ const Card: React.FC<CardProps> = ({
   contentStyle,
 }) => {
   return (
+    <>
     <TouchableOpacity onPress={onPress} style={[styles.card, style]}>
       <View style={styles.imageView}>
       <ImageComponent
@@ -46,18 +48,21 @@ const Card: React.FC<CardProps> = ({
       <Text numberOfLines={2} style={[styles.content, contentStyle]}>
         {content}
       </Text>
+     
     </TouchableOpacity>
+     <StrikethroughTextExample />
+     </>
   );
 };
 
 const styles = StyleSheet.create({
   card: {
-    // backgroundColor: 'white',
+     backgroundColor: 'red',
     borderRadius: 8,
-    padding: 8,
+   // padding: 8,
     marginVertical: 18,
-    height: 180,
-    width: 180,
+    height: 400,
+    width: 400,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -72,6 +77,7 @@ const styles = StyleSheet.create({
     backgroundColor:'yellow',
     width: 60,
     height: 60,
+    marginTop:0
 
   },
   imageStyle:{
