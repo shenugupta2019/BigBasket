@@ -16,7 +16,7 @@ interface GenericImageProps extends Omit<ImageProps, 'source'> {
 const ImageComponent: React.FC<GenericImageProps> = ({
   source,
   width = '100%',
-  height = 60,
+  height = 150,
   borderRadius = 20,
   style,
   placeholder,
@@ -32,7 +32,7 @@ const ImageComponent: React.FC<GenericImageProps> = ({
     typeof source === 'string' ? { uri: source } : source;
 
   return (
-    <View style={{ width, height:100,backgroundColor:'blue' }}>
+    <View style={{ width,backgroundColor:'pink' }}>
       {isLoading && placeholder && (
         <Image
           source={placeholder}

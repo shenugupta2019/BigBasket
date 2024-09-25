@@ -23,14 +23,15 @@ const ButtonWithIcon: React.FC<ButtonWithIconProps> = ({
   iconName,
   iconPosition = 'left',  // Default icon position is left
   iconColor = 'white',    // Default icon color
-  iconSize = 24,          // Default icon size
+  iconSize = 10,          // Default icon size
   color = 'white',        // Default text color
-  backgroundColor = '#007bff', // Default button background color
+  backgroundColor = 'gray', // Default button background color
   style,
   textStyle,
   disabled = false,
 }) => {
   return (
+    <View style={styles.btnView}>
     <TouchableOpacity
       style={[
         styles.button,                      // Base button styles
@@ -52,23 +53,33 @@ const ButtonWithIcon: React.FC<ButtonWithIconProps> = ({
           <Ionicons name={iconName} size={iconSize} color={iconColor} style={styles.iconRight} />
         )}
       </View>
+     
     </TouchableOpacity>
+    </View>
   );
 };
 
 // Define default styles for the button and icon positioning
 const styles = StyleSheet.create({
   button: {
-    paddingVertical: 12,
-    paddingHorizontal: 24,
+    paddingVertical: 6,
+    paddingHorizontal: 6,
     borderRadius: 8,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    width:20,
+    height:20,
+    backgroundColor:'yellow'
   },
   content: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  btnView:{
+width:20,
+height:20
+
   },
   buttonText: {
     fontSize: 16,

@@ -10,7 +10,10 @@ import {
 } from 'react-native';
 import ImageComponent from '../atoms/ImageComponent';
 import ImageWithText from '../molecules/ImageWithText';
+import ButtonWithIcon from '../molecules/ButtonWithIcon';
+import QuantitySelector from '../molecules/QuantitySelector';
 import StrikethroughTextExample from '../molecules/StrikethroughTextExample';
+import Button from '../atoms/Button';
 
 interface CardProps {
   title: string;
@@ -29,41 +32,54 @@ const Card: React.FC<CardProps> = ({
   titleStyle,
   contentStyle,
 }) => {
+
+  const handleQuantityChange = (quantity: number) => {
+    console.log('Quantity changed:', quantity);
+  };
   return (
     <>
-    <TouchableOpacity onPress={onPress} style={[styles.card, style]}>
     
-    <View style={styles.imageView}>
+    <View style={[styles.card, style]}>
+    
       <ImageComponent
        // source="https://dummyimage.com/300x200/000/fff"
-        width={75}
-        height={75}
+        width={150}
+        height={100}
         borderRadius={10}
       />
-    {/* <ImageWithText
+    <ImageWithText
           imageSource={require('../../assets/images/image1.png')}  // Local image
           title="20%"
           description="This is a description of the sample item."
-        /> */}
-      </View>
+        />
+      <Text numberOfLines={1} style={[styles.content, contentStyle]}>
+        {content}
+      </Text>
+      <Text numberOfLines={1} style={[styles.content, contentStyle]}>
+        {content}
+      </Text>
+      <Text numberOfLines={1} style={[styles.content, contentStyle]}>
+        {content}
+      </Text>
+     
+      {/* <StrikethroughTextExample /> */}    
+    
     
 
-      
-   
-    </TouchableOpacity>
-    <Text numberOfLines={1} style={[styles.content, contentStyle]}>
-        {content}
-      </Text>
-      <Text numberOfLines={1} style={[styles.content, contentStyle]}>
-        {content}
-      </Text>
-      <Text numberOfLines={1} style={[styles.content, contentStyle]}>
-        {content}
-      </Text>
-     
-     
-     
-     <StrikethroughTextExample />
+    </View>
+    <View style={styles.bottomTab}>
+   <ButtonWithIcon title={''} onPress={function (): void {
+          throw new Error('Function not implemented.');
+        } } iconName={''}/>
+        <Button title={'Add'} color='black' onPress={function (): void {
+          throw new Error('Function not implemented.');
+        } }/>
+        
+         {/* <QuantitySelector initialQuantity={1} onQuantityChange={handleQuantityChange}  isQuanitityBtnHide={true} /> */}
+
+    
+         </View>
+    
      </>
   );
 };
@@ -71,12 +87,11 @@ const Card: React.FC<CardProps> = ({
 const styles = StyleSheet.create({
   card: {
     flex:1,
-    backgroundColor: 'yellow',
+    backgroundColor: 'blue',
     borderRadius: 8,
    // padding: 8,
     marginVertical: 18,
-    height: 20,
-    width: 120,
+   // width: 120,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -86,11 +101,19 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 2, // For Android shadow
   },
+  bottomTab: {
+    flexDirection: 'row',     // Align items horizontally
+    alignItems: 'center',     // Center items vertically within the row
+    justifyContent: 'space-between', // Adjust horizontal spacing (optional)
+   // padding: 10,              // Optional: padding around the items
+   backgroundColor:'orange',
+   width:20
+  },
   imageView:{
     flexDirection:'row',
     backgroundColor:'green',
-   width: 40,
-    height: 40,
+  // width: 40,
+   // height: 40,
     marginTop:0,
     marginBottom:30
 
@@ -108,11 +131,9 @@ const styles = StyleSheet.create({
     marginBottom: 18,
   },
   content: {
-    fontSize: 10,
-    color: 'black',
-    marginTop: 30,
-    width: 300,
-    height: 20,
+    flex: 1,                  // Ensures items take up available space evenly
+    padding: 10,
+    textAlign: 'center',      // Align text in the center of each item
   },
 });
 

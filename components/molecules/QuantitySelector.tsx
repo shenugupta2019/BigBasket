@@ -6,6 +6,7 @@ interface QuantitySelectorProps {
   onQuantityChange?: (quantity: number) => void; // Callback for quantity changes
   buttonStyle?: ViewStyle;  // Style for the button
   labelStyle?: TextStyle; 
+  isQuanitityBtnHide: boolean
 }
 
 const QuantitySelector: React.FC<QuantitySelectorProps> = ({
@@ -13,6 +14,7 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
   onQuantityChange,
   buttonStyle,
   labelStyle,
+  isQuanitityBtnHide
 }) => {
   const [quantity, setQuantity] = useState<number>(initialQuantity);
 
@@ -30,33 +32,39 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
 
   return (
     <View style={styles.container}>
+        {isQuanitityBtnHide ?
       <TouchableOpacity onPress={decreaseQuantity} style={[styles.button, buttonStyle]}>
         <Text style={styles.buttonText}>-</Text>
-      </TouchableOpacity>
-      <Text style={styles.quantityText}>{quantity}</Text>
+      </TouchableOpacity> : null}
+      <Text style={styles.quantityText}>{String(quantity)}</Text>
+      {isQuanitityBtnHide ?
       <TouchableOpacity onPress={increaseQuantity} style={[styles.button, buttonStyle]}>
-        <Text style={styles.buttonText}>+</Text>
-      </TouchableOpacity>
+        <Text style={styles.buttonText}>+</Text> 
+      </TouchableOpacity>:  null}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
+    flexDirection: 'row',       
     alignItems: 'center',
+    backgroundColor:'yellow',
+    width:100
   },
   button: {
     backgroundColor: '#ddd',
     borderRadius: 5,
     padding: 10,
     marginHorizontal: 5,
+    width:30
   },
   buttonText: {
     fontSize: 18,
   },
   quantityText: {
     fontSize: 18,
+    alignItems: 'center',
   },
 });
 

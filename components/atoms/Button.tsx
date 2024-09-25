@@ -26,10 +26,10 @@ const Button: React.FC<ButtonProps> = ({
   // Define default styles for primary and secondary button variants
   const defaultStyles = {
     primary: {
-      backgroundColor: backgroundColor || '#007bff', // Default to blue if no backgroundColor provided
+      backgroundColor: backgroundColor || 'red', // Default to blue if no backgroundColor provided
     },
     secondary: {
-      backgroundColor: backgroundColor || '#6c757d', // Default to gray if no backgroundColor provided
+      backgroundColor: backgroundColor || 'yellow', // Default to gray if no backgroundColor provided
     },
   };
 
@@ -59,10 +59,13 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     alignItems: 'center',
     justifyContent: 'center',
+    width:100,
+    marginLeft:20
   },
   buttonText: {
     fontSize: 16,
     fontWeight: 'bold',
+    color:'white'
   },
   disabledButton: {
     opacity: 0.6,

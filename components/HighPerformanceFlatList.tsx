@@ -26,7 +26,7 @@ interface ListItemProps {
   thumbnailUrl: string;
 }
 
-const ITEM_WIDTH = 100; 
+const ITEM_WIDTH = 200; 
 // // Individual list item component
 // const ListItem: React.FC<ListItemProps> = React.memo(({ item }) => {
 //   return (
@@ -57,7 +57,7 @@ const HighPerformanceList: React.FC = ({productData, navigation}) => {
   // Calculate the number of columns based on screen width
   const { width } = Dimensions.get('window');
   const calculateNumColumns = () => {
-    const itemWidth = 100;  // Set your item width
+    const itemWidth = 300;  // Set your item width
     const numColumns = Math.floor(width / itemWidth);  // Calculate number of columns based on screen width
     return numColumns >= 3 ? numColumns : 3;  // Ensure a minimum of 3 columns
   };
@@ -141,8 +141,8 @@ const HighPerformanceList: React.FC = ({productData, navigation}) => {
       <FlatList
         data={item.products}
         keyExtractor={(item) => item.id}
-        numColumns={calculateNumColumns()} 
-       columnWrapperStyle={numColumns > 1 ? styles.row : null} // Conditionally apply columnWrapperStyle
+       // numColumns={calculateNumColumns()} 
+      // columnWrapperStyle={numColumns > 1 ? styles.row : null} // Conditionally apply columnWrapperStyle
         renderItem={renderItem}
         key={numColumns} // Force re-render when number of columns changes
         ListFooterComponent={<View style={{ height: 50 }} />}
@@ -197,7 +197,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between', // Distribute items evenly in each row
   },
   itemContainer: {
-    flex: 1, margin: 5 
+    flex: 1, margin: 5 ,
+    width:400,
+    height:350
     // flexDirection:'column',
     // padding: 10,
     // borderBottomWidth: 1,
@@ -212,8 +214,8 @@ const styles = StyleSheet.create({
     color: '#666',
   },
   customCard: {
-    width: 60,
-    height: 60,
+    width: 150,
+    height: 400,
   },
   textInput: {
     height: 40,
