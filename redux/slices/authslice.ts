@@ -39,7 +39,7 @@ interface LoginResponse {
     gender: string;
     image: string;
     accessToken: string; // JWT Token
-    refreshToken:string
+    refreshToken:string,
     isAuthenticated:string
   }
 

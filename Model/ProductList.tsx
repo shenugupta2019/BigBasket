@@ -14,5 +14,6 @@ export interface ProductsList {
     name: string
     price: number
     description: string
-    imageUrl: string
+    imageUrl: string,
+    qty:number
   } 

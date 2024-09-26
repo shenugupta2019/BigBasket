@@ -13,6 +13,8 @@ import {ProductsList, Category, Product} from '../Model/ProductList';
 import Card from '../components/molecules/Card';
 import CustomSearchBar from '../components/molecules/CustomSearchBar'; 
 import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
 
 
 // Example data
@@ -53,6 +55,9 @@ const ITEM_WIDTH = 200;
 
 // Main component with FlatList
 const HighPerformanceList: React.FC = ({productData, navigation}) => {
+  console.log('redux state change after shenu update 1111')
+  const categoriesData = useSelector((state: RootState) => state.data);
+
   const [numColumns, setNumColumns] = useState(1);
   // Calculate the number of columns based on screen width
   const { width } = Dimensions.get('window');
@@ -76,7 +81,6 @@ const HighPerformanceList: React.FC = ({productData, navigation}) => {
   }, []);
   
   console.log('shenu data categories flat list', productData);
-  console.log('shenu data categories flat list navigation', navigation);
   const [search, setSearch] = useState('');
   const [filteredData, setFilteredData] = useState(productData);
 
@@ -90,22 +94,48 @@ const HighPerformanceList: React.FC = ({productData, navigation}) => {
   // Fetch data from API or set it manually for testing
   useEffect(() => {
     setCategories(productData);
-    console.log('shenu data categories useeffect', categories);
-  }, []);
-  // Render each item for a given category
-  const renderItem = ({item}: {item: Product}) => (
-    <View style={styles.itemContainer}>
-      <Card
-        title={item.name ? item.name : 'new item'}
-        content={item.name ? item.name : 'new item'}
-        onPress={() =>
-          
-          navigation.navigate('Details', {id: item.id, name: item.name})
-        }
-        style={styles.customCard}
-      />
-    </View>
-  );
+    setFilteredData(productData)
+    console.log('shenu data categories useeffect 888888', categories);
+  }, [productData]);
+
+  const renderProduct = ({ item, categoryId }) => {
+    // Log the item and categoryId
+    console.log('Item:', item);
+    console.log('Category ID:', categoryId);
+  
+    return (
+      <View style={styles.itemContainer}>
+        <Card
+          title={item.name ? item.name : 'new item'}
+          content={item.name ? item.name : 'new item'}
+          onPress={() => navigation.navigate('Details', { id: item.id, name: item.name })}
+          style={styles.customCard}
+          item={item}
+          categoryId={categoryId}
+        />
+      </View>
+    );
+  };
+  
+//   // Render each item for a given category
+//   const ItemCard = ({ item }: { item: Product }) => {
+//     console.log('the item qty shenu', item.qty)
+//     const [added, setAdded] = useState(false); // Local state to handle the button state
+
+//     const handleAdd = () => {
+//       setAdded(!added); // Toggle the state
+//     };
+
+//  return (
+//     <View style={styles.itemContainer}>
+//       <Card
+//        title={item.name ? item.name : 'new item'}
+//        content={item.name ? item.name : 'new item'}
+//        onPress={() => navigation.navigate('Details', { id: item.id, name: item.name })}
+//        style={styles.customCard} item={item} categoryId={categoryId}    />
+//     </View>);
+  
+//  }
 
  
   // Function to filter data based on the search query
@@ -130,8 +160,10 @@ const HighPerformanceList: React.FC = ({productData, navigation}) => {
   };
 
   // Render the entire list, grouped by category
-  const renderCategory = ({item}: {item: Category}) => (
-    <View style={styles.categoryContainer}>
+  const renderCategory = ({item}: {item: Category}) => {
+    console.log('shenu data categories useeffect renderCategory', item)
+
+    return(<View style={styles.categoryContainer}>
       {/* Render Category Header */}
       <Text style={styles.categoryHeader}>{item.name}</Text>
        {/* Custom Search Bar */}
@@ -143,12 +175,14 @@ const HighPerformanceList: React.FC = ({productData, navigation}) => {
         keyExtractor={(item) => item.id}
        // numColumns={calculateNumColumns()} 
       // columnWrapperStyle={numColumns > 1 ? styles.row : null} // Conditionally apply columnWrapperStyle
-        renderItem={renderItem}
+      renderItem={(props) => renderProduct({ ...props, categoryId: item.id })}
+
         key={numColumns} // Force re-render when number of columns changes
         ListFooterComponent={<View style={{ height: 50 }} />}
       />
     </View>
   );
+}
 
   // if (loading) {
   //   return <ActivityIndicator size="large" color="#0000ff" />;

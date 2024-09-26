@@ -41,7 +41,7 @@ const Button: React.FC<ButtonProps> = ({
         disabled && styles.disabledButton, // Apply disabled styles
         style,                             // Apply any custom styles
       ]}
-      onPress={onPress}
+      onPress={onPress }
       disabled={disabled}
     >
       <Text style={[styles.buttonText, { color: color }, textStyle]}>

@@ -1,0 +1,176 @@
+{
+    "categories": [
+      {
+        "id": "1",
+        "name": "Vegatables",
+        "products": [
+          {
+            "id": "1-1",
+            "name": "Vegatables",
+            "price": 699.99,
+            "description": "Latest model smartphone with all the features.",
+            "imageUrl": "https://example.com/images/smartphone.jpg",
+            "qty":0
+          },
+          {
+            "id": "1-2",
+            "name": "Potato",
+            "price": 1299.99,
+            "description": "High performance laptop for all your needs.",
+            "imageUrl": "https://example.com/images/laptop.jpg",
+            "qty":0
+          },
+          {
+            "id": "1-3",
+            "name": "Spinach",
+            "price": 199.99,
+            "description": "Noise-cancelling over-ear headphones.",
+            "imageUrl": "https://example.com/images/headphones.jpg",
+            "qty":0
+          },
+          {
+            "id": "1-4",
+            "name": "Onion",
+            "price": 199.99,
+            "description": "Noise-cancelling over-ear headphones.",
+            "imageUrl": "https://example.com/images/headphones.jpg",
+            "qty":0
+          },
+          {
+            "id": "1-5",
+            "name": "Cabbage",
+            "price": 199.99,
+            "description": "Noise-cancelling over-ear headphones.",
+            "imageUrl": "https://example.com/images/headphones.jpg",
+            "qty":0
+          },
+          {
+            "id": "1-6",
+            "name": "Coriander",
+            "price": 199.99,
+            "description": "Noise-cancelling over-ear headphones.",
+            "imageUrl": "https://example.com/images/headphones.jpg",
+            "qty":0
+          },
+          {
+            "id": "1-7",
+            "name": "Tomato",
+            "price": 199.99,
+            "description": "Noise-cancelling over-ear headphones.",
+            "imageUrl": "https://example.com/images/headphones.jpg",
+            "qty":0
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "name": "Fruits",
+        "products": [
+          {
+            "id": "2-1",
+            "name": "Apple",
+            "price": 499.99,
+            "description": "Energy-efficient air conditioner with remote control.",
+            "imageUrl": "https://example.com/images/ac.jpg",
+            "qty":0
+          },
+          {
+            "id": "2-2",
+            "name": "Orange",
+            "price": 799.99,
+            "description": "Front-loading washing machine with smart features.",
+            "imageUrl": "https://example.com/images/washing_machine.jpg",
+            "qty":0
+          },
+          {
+            "id": "2-3",
+            "name": "Washing Machine",
+            "price": 799.99,
+            "description": "Front-loading washing machine with smart features.",
+            "imageUrl": "https://example.com/images/washing_machine.jpg",
+            "qty":0
+          },
+          {
+            "id": "2-4",
+            "name": "Guava",
+            "price": 799.99,
+            "description": "Front-loading washing machine with smart features.",
+            "imageUrl": "https://example.com/images/washing_machine.jpg",
+            "qty":0
+          },
+          {
+            "id": "2-5",
+            "name": "Grapes",
+            "price": 799.99,
+            "description": "Front-loading washing machine with smart features.",
+            "imageUrl": "https://example.com/images/washing_machine.jpg",
+            "qty":0
+          },
+          {
+            "id": "2-6",
+            "name": "AshGuard",
+            "price": 799.99,
+            "description": "Front-loading washing machine with smart features.",
+            "imageUrl": "https://example.com/images/washing_machine.jpg",
+            "qty":0
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "name": "Milk",
+        "products": [
+          {
+            "id": "3-1",
+            "name": "Amul",
+            "price": 19.99,
+            "description": "Comfortable cotton t-shirt available in multiple colors.",
+            "imageUrl": "https://example.com/images/tshirt.jpg",
+            "qty":0
+          },
+          {
+            "id": "3-2",
+            "name": "Nandini",
+            "price": 49.99,
+            "description": "Stylish summer dress for casual outings.",
+            "imageUrl": "https://example.com/images/dress.jpg",
+            "qty":0
+          },
+          {
+            "id": "3-3",
+            "name": "Parag",
+            "price": 49.99,
+            "description": "Stylish summer dress for casual outings.",
+            "imageUrl": "https://example.com/images/dress.jpg",
+            "qty":0
+          },
+          {
+            "id": "3-4",
+            "name": "Good Life",
+            "price": 49.99,
+            "description": "Stylish summer dress for casual outings.",
+            "imageUrl": "https://example.com/images/dress.jpg",
+            "qty":0
+          },
+          {
+            "id": "3-5",
+            "name": "Safal",
+            "price": 49.99,
+            "description": "Stylish summer dress for casual outings.",
+            "imageUrl": "https://example.com/images/dress.jpg",
+            "qty":0
+          },
+          {
+            "id": "3-6",
+            "name": "Tata",
+            "price": 49.99,
+            "description": "Stylish summer dress for casual outings.",
+            "imageUrl": "https://example.com/images/dress.jpg",
+            "qty":0
+          }
+        ]
+      }
+      
+    ]
+  }
+  

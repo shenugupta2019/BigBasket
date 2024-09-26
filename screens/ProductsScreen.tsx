@@ -50,8 +50,8 @@ const ProductsScreen: React.FC = ({navigation}) => {
   const [products, setProducts] = useState<ProductList>();
   const [loading, setLoading] = useState<boolean>(true);
   const dispatch = useAppDispatch();
-  const {data, status, error} = useAppSelector(state => state.data);
-  console.log('redux state shenu from redux new ', data);
+  const {categories} = useAppSelector(state => state.data);
+  console.log('redux state shenu from redux new ', categories);
 
   useEffect(() => {
     dispatch(fetchData());
@@ -68,15 +68,15 @@ const ProductsScreen: React.FC = ({navigation}) => {
     // };
 
     // fetchUsers();
-  }, [dispatch]);
+  }, []);
 
-  if (status === 'loading') {
-    return <ActivityIndicator size="large" color="#0000ff" />;
-  }
+  // if (status === 'loading') {
+  //   return <ActivityIndicator size="large" color="#0000ff" />;
+  // }
 
-  if (status === 'failed') {
-    return <Text>Error: {error}</Text>;
-  }
+  // if (status === 'failed') {
+  //   return <Text>Error: {error}</Text>;
+  // }
 
   const handleQuantityChange = (quantity: number) => {
     console.log('Quantity changed:', quantity);
@@ -102,7 +102,7 @@ const ProductsScreen: React.FC = ({navigation}) => {
         title="Hello Modal"
         children={undefined}
       /> */}
-      <HighPerformanceList productData={data} navigation={navigation} />
+      <HighPerformanceList productData={categories} navigation={navigation} />
     </View>
   );
 };

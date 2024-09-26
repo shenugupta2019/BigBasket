@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ViewStyle, TextStyle } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { incrementQuantity, decrementQuantity } from '../../redux/slices/fetchDataSlice';
+import { RootState, AppDispatch } from '../../redux/store';
+
+
 
 interface QuantitySelectorProps {
   initialQuantity?: number; // Optional initial quantity
@@ -7,6 +12,9 @@ interface QuantitySelectorProps {
   buttonStyle?: ViewStyle;  // Style for the button
   labelStyle?: TextStyle; 
   isQuanitityBtnHide: boolean
+  id: string;
+  quantity: number;
+  categoryId:string
 }
 
 const QuantitySelector: React.FC<QuantitySelectorProps> = ({
@@ -14,32 +22,42 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
   onQuantityChange,
   buttonStyle,
   labelStyle,
-  isQuanitityBtnHide
+  isQuanitityBtnHide,
+  id,
+  quantity,
+  categoryId
+
 }) => {
-  const [quantity, setQuantity] = useState<number>(initialQuantity);
+  //const [quantity, setQuantity] = useState<number>(initialQuantity);
+    // Get the items from the Redux state
+    const dispatch = useDispatch<AppDispatch>(); // Use typed dispatch
 
   const increaseQuantity = () => {
-    const newQuantity = quantity + 1;
-    setQuantity(newQuantity);
-    onQuantityChange?.(newQuantity); // Call the callback if provided
+    console.log('added qty shenu',categoryId)
+    dispatch(incrementQuantity({ categoryId,productId:id }));
+    // const newQuantity = quantity + 1;
+    // setQuantity(newQuantity);
+    // onQuantityChange?.(newQuantity); // Call the callback if provided
   };
 
   const decreaseQuantity = () => {
-    const newQuantity = Math.max(quantity - 1, 1);
-    setQuantity(newQuantity);
-    onQuantityChange?.(newQuantity); // Call the callback if provided
+    console.log('decresed qtu shenu')
+    dispatch(decrementQuantity(id))
+    // const newQuantity = Math.max(quantity - 1, 1);
+    // setQuantity(newQuantity);
+    // onQuantityChange?.(newQuantity); // Call the callback if provided
   };
 
   return (
     <View style={styles.container}>
         {isQuanitityBtnHide ?
-      <TouchableOpacity onPress={decreaseQuantity} style={[styles.button, buttonStyle]}>
-        <Text style={styles.buttonText}>-</Text>
-      </TouchableOpacity> : null}
-      <Text style={styles.quantityText}>{String(quantity)}</Text>
-      {isQuanitityBtnHide ?
       <TouchableOpacity onPress={increaseQuantity} style={[styles.button, buttonStyle]}>
-        <Text style={styles.buttonText}>+</Text> 
+        <Text style={styles.buttonText}>+</Text>
+      </TouchableOpacity> : null}
+      <Text style={styles.quantityText}>{quantity}</Text>
+      {isQuanitityBtnHide ?
+      <TouchableOpacity onPress={decreaseQuantity} style={[styles.button, buttonStyle]}>
+        <Text style={styles.buttonText}>-</Text> 
       </TouchableOpacity>:  null}
     </View>
   );
