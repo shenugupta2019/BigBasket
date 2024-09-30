@@ -9,6 +9,7 @@ import DetailsScreen from '../screens/DetailsScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
 import { TabParamList } from './TabParamsList'; // Types for tabs
 import { HomeStackParamList } from './HomeStackParamList'; // Types for HomeStack
+import CategoriesList from '../screens/category/CategoriesList'; // Types for HomeStack
 // Screen Components
 
 // TypeScript types for the navigation
@@ -24,8 +25,8 @@ const HomeStack = createStackNavigator<HomeStackParamList>();
 
 // Generic Stack Navigator
 const StackNavigator: React.FC = () => (
-  <HomeStack.Navigator initialRouteName="Product">
-    <HomeStack.Screen name="Product" component={ProductsScreen}  options={{ headerShown: false }} />
+  <HomeStack.Navigator initialRouteName="Category">
+    <HomeStack.Screen name="Category" component={CategoriesList}  options={{ headerShown: false }} />
     <HomeStack.Screen name="Details" component={DetailsScreen} />
   </HomeStack.Navigator>
 );

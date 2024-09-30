@@ -30,7 +30,7 @@ interface CardProps {
   titleStyle?: TextStyle; // Optional custom style for the title
   contentStyle?: TextStyle; // Optional custom style for the content
   item: Product;
-  categoryId:string
+  categoryId?:string
 }
 
 const Card: React.FC<CardProps> = ({
