@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, TextInput, StyleSheet, TextInputProps } from 'react-native';
+import customSearchBarStyles from  './CustomSearchBar.styles'
 
 // Define the types for the props
 interface SearchBarProps extends TextInputProps {
@@ -15,9 +16,9 @@ const CustomSearchBar: React.FC<SearchBarProps> = ({
   ...rest // Spread other TextInputProps
 }) => {
   return (
-    <View style={styles.container}>
+    <View style={customSearchBarStyles.container}>
       <TextInput
-        style={styles.searchInput}
+        style={customSearchBarStyles.searchInput}
         placeholder={placeholderText}
         value={value}
         onChangeText={onSearch}
@@ -27,25 +28,5 @@ const CustomSearchBar: React.FC<SearchBarProps> = ({
   );
 };
 
-// Styles for the search bar
-const styles = StyleSheet.create({
-  container: {
-    padding: 10,
-    backgroundColor: '#f0f0f0',
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#ddd',
-    marginBottom: 10,
-  },
-  searchInput: {
-    height: 40,
-    paddingHorizontal: 10,
-    backgroundColor: '#fff',
-    borderRadius: 8,
-    fontSize: 16,
-    borderWidth: 1,
-    borderColor: '#ccc',
-  },
-});
 
 export default CustomSearchBar;

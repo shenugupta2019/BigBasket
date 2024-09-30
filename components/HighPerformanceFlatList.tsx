@@ -11,7 +11,7 @@ import {
 import FastImage from 'react-native-fast-image';
 import {ProductsList, Category, Product} from '../Model/ProductList';
 import Card from '../components/molecules/Card';
-import CustomSearchBar from '../components/molecules/CustomSearchBar'; 
+import CustomSearchBar from './molecules/searchbar/CustomSearchBar'; 
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';

@@ -1,6 +1,5 @@
 import React, {useEffect, useState, useMemo, useCallback} from 'react';
 import {View, FlatList, Alert, ActivityIndicator} from 'react-native';
-import {ProductList} from '../../productServices/productService';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {fetchData} from '../../redux/slices/fetchDataSlice';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -12,7 +11,7 @@ import {HomeStackParamList} from '../../navigation/HomeStackParamList';
 import CategoryCard from '../../components/molecules/categoryCard/CategoryCard';
 import categoryStyles from './Category.styles';
 import Typography from '../../components/atoms/Typography';
-import CustomSearchBar from '../../components/molecules/CustomSearchBar';
+import CustomSearchBar from '../../components/molecules/searchbar/CustomSearchBar';
 
 type Props = {
   navigation: HomeScreenNavigationProp;
@@ -30,12 +29,8 @@ type HomeScreenNavigationProp = StackNavigationProp<
 >;
 
 const CategoriesList: React.FC = ({navigation}) => {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [products, setProducts] = useState<ProductList>();
   const dispatch = useAppDispatch();
   const {categories, loading, error} = useAppSelector(state => state.data);
-  const [search, setSearch] = useState('');
-  const [filteredData, setFilteredData] = useState(categories);
   const [searchText, setSearchText] = useState<string>(''); // State for search text
 
 
