@@ -1,5 +1,6 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, ViewStyle, TextStyle } from 'react-native';
+import { TouchableOpacity, Text, ViewStyle, TextStyle } from 'react-native';
+import buttonStyles from './Button.styles';
 
 // Define prop types for the button component
 type ButtonProps = {
@@ -36,40 +37,21 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <TouchableOpacity
       style={[
-        styles.button,                     // Base button styles
+        buttonStyles.button,                     // Base button styles
         defaultStyles[variant],            // Apply variant styles
-        disabled && styles.disabledButton, // Apply disabled styles
+        disabled && buttonStyles.disabledButton, // Apply disabled styles
         style,                             // Apply any custom styles
       ]}
       onPress={onPress }
       disabled={disabled}
     >
-      <Text style={[styles.buttonText, { color: color }, textStyle]}>
+      <Text style={[buttonStyles.buttonText, { color: color }, textStyle]}>
         {title}
       </Text>
     </TouchableOpacity>
   );
 };
 
-// Define default styles for the button
-const styles = StyleSheet.create({
-  button: {
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    borderRadius: 4,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width:100,
-    marginLeft:20
-  },
-  buttonText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color:'white'
-  },
-  disabledButton: {
-    opacity: 0.6,
-  },
-});
+
 
 export default Button;

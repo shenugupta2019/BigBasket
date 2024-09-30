@@ -13,7 +13,7 @@ import ImageWithText from '../molecules/ImageWithText';
 import ButtonWithIcon from '../molecules/ButtonWithIcon';
 import QuantitySelector from '../molecules/QuantitySelector';
 import StrikethroughTextExample from '../molecules/StrikethroughTextExample';
-import Button from '../atoms/Button';
+import Button from '../atoms/button/Button';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   incrementQuantity,
