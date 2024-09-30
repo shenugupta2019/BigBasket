@@ -1,40 +1,50 @@
 import React from 'react';
-import { View, TextInput, StyleSheet, TextInputProps, StyleProp, ViewStyle } from 'react-native';
+import { View, TextInput, StyleSheet, TextInputProps } from 'react-native';
 
-interface SearchBarProps {
-  placeholder?: string;
-  onSearch: (query: string) => void;
-  value: string;
-  style?: StyleProp<ViewStyle>;
-  inputStyle?: StyleProp<ViewStyle>;
+// Define the types for the props
+interface SearchBarProps extends TextInputProps {
+  placeholderText?: string;    // Optional placeholder text
+  value: string;               // The current search text
+  onSearch: (text: string) => void; // Function to handle search input changes
 }
 
-const CustomSearchBar: React.FC<SearchBarProps> = ({ placeholder = "Search...", onSearch, value, style, inputStyle }) => {
+const CustomSearchBar: React.FC<SearchBarProps> = ({
+  placeholderText = "Search...", // Default placeholder text
+  value,
+  onSearch,
+  ...rest // Spread other TextInputProps
+}) => {
   return (
-    <View style={[styles.searchBar, style]}>
+    <View style={styles.container}>
       <TextInput
-        style={[styles.textInput, inputStyle]}
-        placeholder={placeholder}
+        style={styles.searchInput}
+        placeholder={placeholderText}
         value={value}
         onChangeText={onSearch}
+        {...rest} // Pass other TextInputProps (like autoFocus, keyboardType, etc.)
       />
     </View>
   );
 };
 
+// Styles for the search bar
 const styles = StyleSheet.create({
-  searchBar: {
-    marginBottom: 20,
+  container: {
+    padding: 10,
     backgroundColor: '#f0f0f0',
-    borderRadius: 10,
-    paddingHorizontal: 10,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    marginBottom: 10,
   },
-  textInput: {
+  searchInput: {
     height: 40,
-    fontSize: 16,
-    borderRadius: 10,
     paddingHorizontal: 10,
-    backgroundColor: '#e6e6e6',
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    fontSize: 16,
+    borderWidth: 1,
+    borderColor: '#ccc',
   },
 });
 
