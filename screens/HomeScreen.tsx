@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation/NavigationControllerWithTab';
-import ImageComponent from '../components/atoms/ImageComponent';
+import ImageComponent from '../components/atoms/image/ImageComponent';
 import { globalStyles } from '../components/GlobalStyles/GlobalStyles';  // Import global styles
 import StyledContainer from '../components/GlobalStyles/StylesContainer';
 import Card from '../components/molecules/Card';

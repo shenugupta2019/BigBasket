@@ -27,7 +27,8 @@ const HomeStack = createStackNavigator<HomeStackParamList>();
 const StackNavigator: React.FC = () => (
   <HomeStack.Navigator initialRouteName="Category">
     <HomeStack.Screen name="Category" component={CategoriesList}  options={{ headerShown: false }} />
-    <HomeStack.Screen name="Details" component={DetailsScreen} />
+    <HomeStack.Screen name="Details" component={DetailsScreen} 
+      />
   </HomeStack.Navigator>
 );
 
@@ -53,7 +54,7 @@ const TabNavigator: React.FC = () => (
       tabBarInactiveTintColor: 'gray',
     })}
   >
-    <Tab.Screen name="Home" component={StackNavigator} />
+    <Tab.Screen name="Home" component={StackNavigator} options={{ headerShown: false }} />
     <Tab.Screen name="SettingsTab" component={SettingsNavigator} />
   </Tab.Navigator>
 );

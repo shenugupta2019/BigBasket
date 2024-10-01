@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Image, ImageProps, StyleSheet, ImageSourcePropType, ImageStyle, View, ActivityIndicator } from 'react-native';
+import imageStyles from './ImageComponent.styles';
 
 interface GenericImageProps extends Omit<ImageProps, 'source'> {
   source?: string | ImageSourcePropType;
@@ -36,34 +37,21 @@ const ImageComponent: React.FC<GenericImageProps> = ({
       {isLoading && placeholder && (
         <Image
           source={placeholder}
-          style={[styles.image, { width, height:height, borderRadius }, style]}
+          style={[imageStyles.image, { width, height:height, borderRadius }, style]}
         />
       )}
       <Image
-        style={[styles.image, { width, height:height, borderRadius }, style]}
+        style={[imageStyles.image, { width, height:height, borderRadius }, style]}
         source={imageSource}
         onLoad={() => setIsLoading(false)}
         onError={() => setIsError(true)}
         {...rest}
       />
-      {isLoading && <ActivityIndicator style={styles.loadingIndicator} />}
+      {isLoading && <ActivityIndicator style={imageStyles.loadingIndicator} />}
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  image: {
-    height:60,
-    resizeMode: 'cover',
-    marginBottom:120
-  },
-  loadingIndicator: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    marginLeft: -15,
-   marginTop: -15,
-  },
-});
+
 
 export default ImageComponent;

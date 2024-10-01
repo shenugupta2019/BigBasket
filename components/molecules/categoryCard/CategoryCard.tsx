@@ -1,7 +1,7 @@
 // components/Card.tsx
 import React from 'react';
 import {View, Text, ViewStyle, TextStyle} from 'react-native';
-import ImageComponent from '../../atoms/ImageComponent';
+import ImageComponent from '../../atoms/image/ImageComponent';
 import {Product} from '../../../Model/ProductList';
 import CategoryCardStyles from './CategoryCard.styles';
 import {

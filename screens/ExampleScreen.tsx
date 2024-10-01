@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import {View} from 'react-native';
 import Typography from '../components/atoms/Typography';
 import Button from '../components/atoms/button/Button';
-import ButtonWithIcon from '../components/molecules/ButtonWithIcon';
+import ButtonWithIcon from '../components/molecules/buttonWithIcon/ButtonWithIcon';
 import TextInputComponent from '../components/atoms/textComponent/TextInputComponent'
 
 

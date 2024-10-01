@@ -8,9 +8,9 @@ import {
   ViewStyle,
   TextStyle,
 } from 'react-native';
-import ImageComponent from '../atoms/ImageComponent';
+import ImageComponent from '../atoms/image/ImageComponent';
 import ImageWithText from '../molecules/ImageWithText';
-import ButtonWithIcon from '../molecules/ButtonWithIcon';
+import ButtonWithIcon from './buttonWithIcon/ButtonWithIcon';
 import QuantitySelector from '../molecules/QuantitySelector';
 import StrikethroughTextExample from '../molecules/StrikethroughTextExample';
 import Button from '../atoms/button/Button';

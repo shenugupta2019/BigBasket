@@ -1,17 +1,18 @@
 import {StyleSheet } from 'react-native';
+import { horizontalScale, moderateScale, verticalScale } from '../../../mobileresponsive/Metrics';
 
 
 const textInputStyles = StyleSheet.create({
     label: {
-      fontSize: 16,
-      marginBottom: 8,
+      fontSize: moderateScale(16),
+      marginBottom: verticalScale(8),
     },
     input: {
-      height: 50,
+      height: verticalScale(50),
       borderColor: '#ccc',
-      borderWidth: 1,
-      borderRadius: 5,
-      paddingHorizontal: 10,
+      borderWidth: moderateScale(1),
+      borderRadius: moderateScale(5),
+      paddingHorizontal: horizontalScale(10),
       backgroundColor: '#fff',
     },
     errorInput: {
@@ -19,8 +20,8 @@ const textInputStyles = StyleSheet.create({
     },
     errorText: {
       color: 'red',
-      fontSize: 14,
-      marginTop: 4 ,
+      fontSize: moderateScale(14),
+      marginTop: verticalScale(4) ,
     },
   });
 
