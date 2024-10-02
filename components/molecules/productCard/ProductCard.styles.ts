@@ -5,16 +5,17 @@ import {
 const productCardStyles = StyleSheet.create({
     card: {
      // flex: 1,
-      backgroundColor: 'blue',
+      backgroundColor: 'white',
       borderRadius: 8,
       // padding: 8,
       marginVertical: 18,
-      // width: 120,
+       width: 120,
       shadowColor: '#000',
       shadowOffset: {
         width: 0,
         height: 2,
       },
+      height:200,
       shadowOpacity: 0.3,
       shadowRadius: 4,
       elevation: 2, // For Android shadow

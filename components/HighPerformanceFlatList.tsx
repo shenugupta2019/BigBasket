@@ -15,6 +15,7 @@ import CustomSearchBar from './molecules/searchbar/CustomSearchBar';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
+import ProductCard from './molecules/productCard/ProductCard';
 
 
 // Example data
@@ -55,7 +56,9 @@ const ITEM_WIDTH = 200;
 
 // Main component with FlatList
 const HighPerformanceList: React.FC = ({productData, navigation}) => {
-  console.log('redux state change after shenu update 1111')
+
+  console.log('shenu test products',productData)
+
   const categoriesData = useSelector((state: RootState) => state.data);
 
   const [numColumns, setNumColumns] = useState(1);
@@ -80,9 +83,9 @@ const HighPerformanceList: React.FC = ({productData, navigation}) => {
     };
   }, []);
   
-  console.log('shenu data categories flat list', productData);
-  const [search, setSearch] = useState('');
-  const [filteredData, setFilteredData] = useState(productData);
+  // console.log('shenu data categories flat list', productData);
+  // const [search, setSearch] = useState('');
+  // const [filteredData, setFilteredData] = useState(productData);
 
   const [categories, setCategories] = useState<Category[]>([]);
   const handleCardPress = (item: any) => {
@@ -93,29 +96,29 @@ const HighPerformanceList: React.FC = ({productData, navigation}) => {
 
   // Fetch data from API or set it manually for testing
   useEffect(() => {
-    setCategories(productData);
-    setFilteredData(productData)
-    console.log('shenu data categories useeffect 888888', categories);
-  }, [productData]);
+    // setCategories(productData);
+    // setFilteredData(productData)
+    // console.log('shenu data categories useeffect 888888', categories);
+  }, []);
 
-  const renderProduct = ({ item, categoryId }) => {
-    // Log the item and categoryId
-    console.log('Item:', item);
-    console.log('Category ID:', categoryId);
+  const renderItem = ({ item }: { item: Product }) => {
+    // Use a block to include multiple statements
+    console.log('item name shenu 444',item);
   
     return (
       <View style={styles.itemContainer}>
-        <Card
-          title={item.name ? item.name : 'new item'}
-          content={item.name ? item.name : 'new item'}
+        <ProductCard
+          title={item.name}
+          content={item.name }
           onPress={() => navigation.navigate('Details', { id: item.id, name: item.name })}
           style={styles.customCard}
           item={item}
-          categoryId={categoryId}
         />
       </View>
     );
   };
+  
+
   
 //   // Render each item for a given category
 //   const ItemCard = ({ item }: { item: Product }) => {
@@ -139,50 +142,50 @@ const HighPerformanceList: React.FC = ({productData, navigation}) => {
 
  
   // Function to filter data based on the search query
-  const searchFilter = (text: string) => {
-    console.log('search str', text)
-    if (text) {
-      const newData = categories.map(category => {
-        const filteredItems = category.products.filter(item =>
-          item.name.toLowerCase().includes(text.toLowerCase())
-        );
-        if (filteredItems.length > 0) {
-          return { ...category, products: filteredItems };
-        }
-        return null;
-      }).filter(category => category !== null);
-      setFilteredData(newData );
-      setSearch(text);
-    } else {
-      setFilteredData(categories);
-      setSearch(text);
-    }
-  };
+  // const searchFilter = (text: string) => {
+  //   console.log('search str', text)
+  //   if (text) {
+  //     const newData = categories.map(category => {
+  //       const filteredItems = category.products.filter(item =>
+  //         item.name.toLowerCase().includes(text.toLowerCase())
+  //       );
+  //       if (filteredItems.length > 0) {
+  //         return { ...category, products: filteredItems };
+  //       }
+  //       return null;
+  //     }).filter(category => category !== null);
+  //     setFilteredData(newData );
+  //     setSearch(text);
+  //   } else {
+  //     setFilteredData(categories);
+  //     setSearch(text);
+  //   }
+  // };
 
-  // Render the entire list, grouped by category
-  const renderCategory = ({item}: {item: Category}) => {
-    console.log('shenu data categories useeffect renderCategory', item)
+//   // Render the entire list, grouped by category
+//   const renderCategory = ({item}: {item: Category}) => {
+//     console.log('shenu data categories useeffect renderCategory', item)
 
-    return(<View style={styles.categoryContainer}>
-      {/* Render Category Header */}
-      <Text style={styles.categoryHeader}>{item.name}</Text>
-       {/* Custom Search Bar */}
+//     return(<View style={styles.categoryContainer}>
+//       {/* Render Category Header */}
+//       <Text style={styles.categoryHeader}>{item.name}</Text>
+//        {/* Custom Search Bar */}
     
 
-      {/* Render Items within the Category */}
-      <FlatList
-        data={item.products}
-        keyExtractor={(item) => item.id}
-       // numColumns={calculateNumColumns()} 
-      // columnWrapperStyle={numColumns > 1 ? styles.row : null} // Conditionally apply columnWrapperStyle
-      renderItem={(props) => renderProduct({ ...props, categoryId: item.id })}
+//       {/* Render Items within the Category */}
+//       <FlatList
+//         data={item.products}
+//         keyExtractor={(item) => item.id}
+//        // numColumns={calculateNumColumns()} 
+//       // columnWrapperStyle={numColumns > 1 ? styles.row : null} // Conditionally apply columnWrapperStyle
+//       renderItem={(props) => renderProduct({ ...props, categoryId: item.id })}
 
-        key={numColumns} // Force re-render when number of columns changes
-        ListFooterComponent={<View style={{ height: 50 }} />}
-      />
-    </View>
-  );
-}
+//         key={numColumns} // Force re-render when number of columns changes
+//         // ListFooterComponent={<View style={{ height: 50 }} />}
+//       />
+//     </View>
+//   );
+// }
 
   // if (loading) {
   //   return <ActivityIndicator size="large" color="#0000ff" />;
@@ -195,30 +198,30 @@ const HighPerformanceList: React.FC = ({productData, navigation}) => {
     value={search}
     onSearch={(text) => searchFilter(text)}
   /> */}
-   <TextInput
+   {/* <TextInput
         style={styles.textInput}
         value={search}
         placeholder="Search items..."
         onChangeText={(text) => searchFilter(text)}
-      />
+      /> */}
     
     <FlatList
-      data={filteredData}
+      data={  productData}
       keyExtractor={item => item.name}
-      renderItem={renderCategory}
+      renderItem={renderItem}
      // ListFooterComponent={<View style={{ height: 50 }} />} // Extra space at the bottom
     />
     </>
-  );
-};
+  );}
+  
 
 const styles = StyleSheet.create({
   categoryContainer: {
     marginBottom: 20,
-    backgroundColor: '#f9f9f9',
+    backgroundColor: 'red',
     padding: 10,
     borderRadius: 8,
-    flex: 1,
+    //flex: 1,
      margin: 5
   },
   categoryHeader: {
@@ -249,7 +252,7 @@ const styles = StyleSheet.create({
   },
   customCard: {
     width: 150,
-    height: 400,
+    height: 120,
   },
   textInput: {
     height: 40,

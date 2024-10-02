@@ -42,7 +42,7 @@ const ProductCard: React.FC<CardProps> = ({
     [item.id]: false, // Initialize visibility for this item
   });
 
-  console.log('shenu gupta: qty 54546456', item);
+  console.log('shenu gupta content', content);
   const dispatch = useDispatch<AppDispatch>(); // Use typed dispatch
 
   const handleQuantityChange = (quantity: number) => {
@@ -70,7 +70,7 @@ const ProductCard: React.FC<CardProps> = ({
 
   return (
     <>
-      <View style={[productCardStyles.card, style]}>
+      <View style={[productCardStyles.card]}>
         <ImageComponent
           source="https://dummyimage.com/300x200/000/fff"
           width={150}
