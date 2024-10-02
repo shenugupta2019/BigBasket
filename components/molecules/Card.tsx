@@ -9,10 +9,10 @@ import {
   TextStyle,
 } from 'react-native';
 import ImageComponent from '../atoms/image/ImageComponent';
-import ImageWithText from '../molecules/ImageWithText';
+import ImageWithText from './ImageWithText';
 import ButtonWithIcon from './buttonWithIcon/ButtonWithIcon';
-import QuantitySelector from '../molecules/QuantitySelector';
-import StrikethroughTextExample from '../molecules/StrikethroughTextExample';
+import QuantitySelector from './QuantitySelector';
+import StrikethroughTextExample from './StrikethroughTextExample';
 import Button from '../atoms/button/Button';
 import {useDispatch, useSelector} from 'react-redux';
 import {

@@ -48,9 +48,38 @@ const CategoriesList: React.FC = ({navigation}) => {
   // Memoize the key extractor to improve performance
   const keyExtractor = useMemo(() => item => item.id.toString(), []);
 
-  const handleItemPress = useCallback(item => {
-    navigation.navigate('Details', {id: item.id, name: item.name});
+  const handleItemPress = useCallback((item: any) => {
+  // Check if the item is an array or a single object
+  if (Array.isArray(item)) {
+    const extractedProducts = extractProducts(item);  // Extract if it's an array of categories
+    console.log('shenu gupta products of categories', extractedProducts);
+  } else {
+    // Handle single category object
+    console.log('shenu gupta products of a single category', item.products);
+    // Assuming item is a single category object, log the products
+    const extractedProducts = extractProducts([item]);  // Convert single object to array
+    navigation.navigate('Details', { products: extractedProducts });
+    console.log('extracted single category', extractedProducts);
+  }
+
   }, []);
+
+// Extract products from each category
+const extractProducts = (data: any[]) => {
+  console.log('extracts data 4544', data);
+  
+  // Check if data is undefined or not an array
+  if (!Array.isArray(data)) {
+    console.error('extractProducts expects an array, received:', data);
+    return [];  // Return an empty array to avoid errors
+  }
+
+  return data.map(category => {
+    return {
+      products: category.products
+    };
+  });
+};
 
   const renderCategory = useCallback(
     ({item}) => (

@@ -1,9 +1,13 @@
 import React,{useEffect} from 'react';
 import { View, Text } from 'react-native';
+import ProductCard from '../components/molecules/productCard/ProductCard';
+import HighPerformanceList from '../components/HighPerformanceFlatList';
+
 
 const DetailsScreen = ({ navigation,route }) => {
-  console.log('routes params shenu',route.params)
-  const { id, name } = route.params;
+  //console.log('routes params shenu',route.params)
+  const { products } = route.params;
+  console.log('shenu gupta prodcuts fefdsfs',products)
 
   useEffect(() => {
     navigation.getParent()?.setOptions({ tabBarStyle: { display: 'none' } });
@@ -14,8 +18,10 @@ const DetailsScreen = ({ navigation,route }) => {
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details for: {name}</Text>
-      <Text>Item ID: {id}</Text>
+        <HighPerformanceList productData={products} navigation={navigation} />
+      {/* <ProductCard title={''} content={name} item={{}}/> */}
+      {/* <Text>Details for: {name}</Text>
+      <Text>Item ID: {id}</Text> */}
     </View>
   );
 };

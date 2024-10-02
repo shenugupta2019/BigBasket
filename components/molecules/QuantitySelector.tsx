@@ -50,15 +50,13 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
 
   return (
     <View style={styles.container}>
-        {isQuanitityBtnHide ?
       <TouchableOpacity onPress={increaseQuantity} style={[styles.button, buttonStyle]}>
         <Text style={styles.buttonText}>+</Text>
-      </TouchableOpacity> : null}
-      <Text style={styles.quantityText}>{quantity}</Text>
-      {isQuanitityBtnHide ?
+      </TouchableOpacity> 
+      <Text style={styles.quantityText}>{1}</Text>
       <TouchableOpacity onPress={decreaseQuantity} style={[styles.button, buttonStyle]}>
         <Text style={styles.buttonText}>-</Text> 
-      </TouchableOpacity>:  null}
+      </TouchableOpacity>
     </View>
   );
 };
@@ -67,8 +65,9 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',       
     alignItems: 'center',
+   justifyContent:'space-between',
     backgroundColor:'yellow',
-    width:100
+    width:150
   },
   button: {
     backgroundColor: '#ddd',

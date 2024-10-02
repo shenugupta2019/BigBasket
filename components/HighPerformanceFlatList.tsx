@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {ProductsList, Category, Product} from '../Model/ProductList';
-import Card from '../components/molecules/Card';
+import Card from './molecules/Card';
 import CustomSearchBar from './molecules/searchbar/CustomSearchBar'; 
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';

@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScreen from '../screens/HomeScreen';
 import ProductsScreen from '../screens/ProductsScreen';
-import DetailsScreen from '../screens/DetailsScreen';
+import DetailsScreen from '../screens/ProductDetailsScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
 import { TabParamList } from './TabParamsList'; // Types for tabs
 import { HomeStackParamList } from './HomeStackParamList'; // Types for HomeStack
