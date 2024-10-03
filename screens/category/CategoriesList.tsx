@@ -85,8 +85,11 @@ const extractProducts = (data: any[]) => {
   });
 };
 
-  const renderCategory = useCallback(
-    ({item}) => (
+const renderCategory = useCallback(
+  ({ item }) => {
+    console.log('category refresh',item.products); // Logging before the return
+
+    return (
       <View style={categoryStyles.itemContainer}>
         {loading && <ActivityIndicator size="large" color="#0000ff" />}
         {error && (
@@ -99,10 +102,10 @@ const extractProducts = (data: any[]) => {
           item={item}
         />
       </View>
-    ),
-    [handleItemPress],
-  );
-
+    );
+  },
+  [handleItemPress] // Dependencies array
+);
   return (
     <View style={categoryStyles.categoryContainer}>
       {/* Render Category Header */}
