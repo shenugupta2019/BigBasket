@@ -30,11 +30,12 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
 }) => {
   //const [quantity, setQuantity] = useState<number>(initialQuantity);
     // Get the items from the Redux state
+    console.log('added qty shenu shenu',categoryId)
     const dispatch = useDispatch<AppDispatch>(); // Use typed dispatch
 
   const increaseQuantity = () => {
     console.log('added qty shenu',categoryId)
-    dispatch(incrementQuantity({ categoryId,productId:id }));
+    dispatch(incrementQuantity({ categoryId,productId:id,qty:quantity}));
     // const newQuantity = quantity + 1;
     // setQuantity(newQuantity);
     // onQuantityChange?.(newQuantity); // Call the callback if provided
@@ -42,7 +43,7 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
 
   const decreaseQuantity = () => {
     console.log('decresed qtu shenu')
-    dispatch(decrementQuantity(id))
+    dispatch(decrementQuantity({ categoryId,productId:id,qty:quantity }));
     // const newQuantity = Math.max(quantity - 1, 1);
     // setQuantity(newQuantity);
     // onQuantityChange?.(newQuantity); // Call the callback if provided
@@ -53,7 +54,7 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
       <TouchableOpacity onPress={increaseQuantity} style={[styles.button, buttonStyle]}>
         <Text style={styles.buttonText}>+</Text>
       </TouchableOpacity> 
-      <Text style={styles.quantityText}>{1}</Text>
+      <Text style={styles.quantityText}>{quantity}</Text>
       <TouchableOpacity onPress={decreaseQuantity} style={[styles.button, buttonStyle]}>
         <Text style={styles.buttonText}>-</Text> 
       </TouchableOpacity>

@@ -31,12 +31,15 @@ type HomeScreenNavigationProp = StackNavigationProp<
 const CategoriesList: React.FC = ({navigation}) => {
   const dispatch = useAppDispatch();
   const {categories, loading, error} = useAppSelector(state => state.data);
+    // Access the categories from Redux state
   const [searchText, setSearchText] = useState<string>(''); // State for search text
 
 
-  console.log('redux state shenu from redux new 4567667 ', categories);
+  console.log('redux state shenu from redux new testing redux ', categories[0].products);
 
   useEffect(() => {
+    console.log('redux state shenu from redux new testing redux useEffect ', categories[0].products);
+
     dispatch(fetchData());
   }, []);
 
@@ -56,9 +59,10 @@ const CategoriesList: React.FC = ({navigation}) => {
   } else {
     // Handle single category object
     console.log('shenu gupta products of a single category', item.products);
+    console.log('shenu gupta products of a single category id new', item.id);
     // Assuming item is a single category object, log the products
     const extractedProducts = extractProducts([item]);  // Convert single object to array
-    navigation.navigate('Details', { products: extractedProducts });
+    navigation.navigate('Details', { products: extractedProducts,id: item.id});
     console.log('extracted single category', extractedProducts);
   }
 
@@ -110,7 +114,7 @@ const extractProducts = (data: any[]) => {
 
       {/* Render Items within the Category */}
       <FlatList
-        data={filteredCategories}
+        data={categories}
         keyExtractor={keyExtractor}
         renderItem={item => renderCategory(item)}
       />

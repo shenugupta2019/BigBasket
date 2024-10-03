@@ -18,9 +18,13 @@ interface ProductsList {
   loading: boolean;
   error: string | null;
 }
-
+interface CategoriesState {
+  categories: Category[];
+  loading: boolean;
+  error: string | null;
+}
 // Define the initial state
-const initialState: ProductsList = {
+const initialState: CategoriesState = {
   categories: data.categories,
   loading: false,
   error: null,
@@ -65,22 +69,35 @@ const dataSlice = createSlice({
   reducers: {
     incrementQuantity: (
       state,
-      action: PayloadAction<{categoryId: string; productId: string}>,
+      action: PayloadAction<{categoryId: string; productId: string;qty: number}>,
     ) => {
-      console.log('shenu gupta add redux 443r33e3 data', state.categories);
-      const {categoryId, productId} = action.payload;
-      console.log('shenu item found after updating categoryId', categoryId);
-      // Find the category by its ID
-      const category = state.categories.find(cat => cat.id === categoryId);
-      if (category) {
-        // Find the product within the category by its ID
-        const product = category.products.find(prod => prod.id === productId);
-        if (product) {
-          // Update the product quantity
-          product.qty += 1;
-          console.log('shenu item found after updating', product);
-        }
-      }
+      const { categoryId, productId, qty } = action.payload;
+
+      console.log('category index redux shenu categoryId',categoryId)
+
+  // Find the category by its ID
+  const categoryIndex = state.categories.findIndex(cat => cat.id === categoryId);
+
+  console.log('category index redux shenu',categoryIndex)
+
+  const category = state.categories.find((cat) => cat.id === categoryId);
+
+  if (category) {
+    const product = category.products.find((prod) => prod.id === productId);
+    if (product) {
+      product.qty += 1;
+    }
+  }
+  
+      // if (category) {
+      //   // Find the product within the category by its ID
+      //   const product = category.products.find(prod => prod.id === productId);
+      //   if (product) {
+      //     // Update the product quantity
+      //     product.qty += 1;
+      //     console.log('shenu item found after updating shenu', product);
+      //   }
+      // }
 
       // for (const category of state.data) {
       //   const foundProduct = category.products.find(product => product.id === action.payload);

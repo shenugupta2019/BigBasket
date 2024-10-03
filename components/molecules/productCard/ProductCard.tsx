@@ -42,7 +42,7 @@ const ProductCard: React.FC<CardProps> = ({
     [item.id]: false, // Initialize visibility for this item
   });
 
-  console.log('shenu gupta content', content);
+  console.log('shenu gupta content ProductCard qty', item);
   const dispatch = useDispatch<AppDispatch>(); // Use typed dispatch
 
   const handleQuantityChange = (quantity: number) => {

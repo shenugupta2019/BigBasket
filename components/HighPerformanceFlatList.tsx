@@ -55,9 +55,9 @@ const ITEM_WIDTH = 200;
 // );
 
 // Main component with FlatList
-const HighPerformanceList: React.FC = ({productData, navigation}) => {
+const HighPerformanceList: React.FC = ({productData, navigation,categoryId}) => {
 
-  console.log('shenu test products',productData)
+  console.log('shenu test products cateId',categoryId)
 
   const categoriesData = useSelector((state: RootState) => state.data);
 
@@ -113,6 +113,7 @@ const HighPerformanceList: React.FC = ({productData, navigation}) => {
           onPress={() => navigation.navigate('Details', { id: item.id, name: item.name })}
           style={styles.customCard}
           item={item}
+          categoryId={categoryId}
         />
       </View>
     );
@@ -234,9 +235,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between', // Distribute items evenly in each row
   },
   itemContainer: {
-    flex: 1, margin: 5 ,
+    flex: 1,
+    margin: 5 ,
     width:400,
-    height:350
+    height:200
     // flexDirection:'column',
     // padding: 10,
     // borderBottomWidth: 1,
