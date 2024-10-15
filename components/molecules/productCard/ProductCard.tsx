@@ -12,6 +12,9 @@ import {RootState, AppDispatch} from '../../../redux/store';
 import {Category, Product} from '../../../Model/ProductList';
 import Typography from '../../atoms/Typography';
 import productCardStyles from './ProductCard.styles';
+import { addItemToCart } from '../../../redux/slices/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 interface CardProps {
   title: string;
@@ -38,9 +41,12 @@ const ProductCard: React.FC<CardProps> = ({
   const [visibleButtons, setVisibleButtons] = useState<{ [key: string]: boolean }>({
     [item.id]: false,
   });
-
+  const dispatch = useDispatch<AppDispatch>(); // Use typed dispatch
   console.log('shenu gupta content ProductCard qty', item);
   //const dispatch = AppDispatch<AppDispatch>();
+  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+  console.log('shenu gupta cartItems', cartItems);
+
 
   const handleQuantityChange = (quantity: number) => {
     console.log('Quantity changed:', quantity);
@@ -66,6 +72,11 @@ const ProductCard: React.FC<CardProps> = ({
 
   // Toggle visibility for a specific item by its id
   const toggleVisibility = useCallback(() => {
+    if (product) {
+      dispatch(addItemToCart(product));
+    } else {
+      console.error("Product is undefined");
+    }
     setVisibleButtons(prevState => ({
       ...prevState,
       [item.id]: !prevState[item.id], // Toggle the visibility
@@ -104,7 +115,7 @@ const ProductCard: React.FC<CardProps> = ({
         </View>
 
         <View style={productCardStyles.bottomTab}>
-          {!isVisible ? (
+          {!isVisible && product && product.qty===0  ? (
             <Button title={'Add'} onPress={toggleVisibility} />
           ) : (
             <QuantitySelector
@@ -112,7 +123,7 @@ const ProductCard: React.FC<CardProps> = ({
               onQuantityChange={handleQuantityChange}
               isQuanitityBtnHide={true}
               id={item.id}
-              quantity={product ? product.qty : 1} // Ensure quantity exists
+              quantity={product ? product.qty : 0} // Ensure quantity exists
               categoryId={categoryId}
             />
           )}

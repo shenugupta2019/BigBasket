@@ -16,12 +16,26 @@ const DetailsScreen = ({ navigation,route }) => {
   console.log('shenu detail screen products',products)
   console.log('shenu detail screen products category id',id)
 
-  useEffect(() => {
-    navigation.getParent()?.setOptions({ tabBarStyle: { display: 'none' } });
+  // useEffect(() => {
+  //   // Hide the tab bar when this screen is focused
+  //   navigation.setOptions({
+  //     tabBarStyle: { display: 'flex' },
+  //   });
+    
+  //   // Reset tab bar when leaving the screen
+  //   return () => {
+  //     navigation.setOptions({
+  //       tabBarStyle: { display: 'flex' },
+  //     });
+  //   };
+  // }, [navigation]);
 
-    // Cleanup to show the tab bar again when navigating away
-    return () => navigation.getParent()?.setOptions({ tabBarStyle: undefined });
-  }, [navigation]);
+  // useEffect(() => {
+  //   navigation.getParent()?.setOptions({ tabBarStyle: { display: 'none' } });
+
+  //   // Cleanup to show the tab bar again when navigating away
+  //   return () => navigation.getParent()?.setOptions({ tabBarStyle: undefined });
+  // }, [navigation]);
 
   return (
     <View >

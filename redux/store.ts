@@ -4,6 +4,7 @@ import counterReducer from './counterSlice'; // Example slice
 import dataReducer from './slices/fetchDataSlice';
 import authReducer from './slices/authslice';
 import quantityReducer from './slices/quantitySlice';
+import cartReducer from './slices/cartSlice';
 
 // Set up the Redux store
 export const store = configureStore({
@@ -11,6 +12,7 @@ export const store = configureStore({
     counter: counterReducer,
     data: dataReducer, // Add more reducers here
     quantity: authReducer,
+    cart: cartReducer,
   },
 });
 

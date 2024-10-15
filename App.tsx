@@ -31,7 +31,8 @@ import NavigationControllerWithTab from './navigation/NavigationControllerWithTa
 
 
 import HighPerformanceList from './components/HighPerformanceFlatList'
-import ProductsScreen from './screens/ProductsScreen'
+import CategoriesList from './screens/category/CategoriesList'
+import ProductDetailsScreen from './screens/ProductDetailsScreen'
 import RegistrationScreen from './screens/RegistrationScreen'
 import Counter from './screens/Counter'
 import { Provider } from 'react-redux';
@@ -43,10 +44,70 @@ import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 import { Alert } from 'react-native';
 import RNRestart from 'react-native-restart'; 
 import TodoListScreen from './screens/TodoListScreen';
+import { Button } from 'react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 
 
 
 function App(): React.JSX.Element {
+
+  function DetailsScreen() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Details!</Text>
+      </View>
+    );
+  }
+  
+  function HomeScreen({ navigation }) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Home screen</Text>
+        <Button
+          title="Go to Details"
+          onPress={() => navigation.navigate('Details')}
+        />
+      </View>
+    );
+  }
+  
+  function SettingsScreen({ navigation }) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Settings screen</Text>
+        <Button
+          title="Go to Details"
+          onPress={() => navigation.navigate('Details')}
+        />
+      </View>
+    );
+  }
+  
+  const HomeStack = createNativeStackNavigator();
+  
+  function HomeStackScreen() {
+    return (
+      <HomeStack.Navigator>
+        <HomeStack.Screen name="Home" component={CategoriesList} />
+        <HomeStack.Screen name="Details" component={ProductDetailsScreen} />
+      </HomeStack.Navigator>
+    );
+  }
+  
+  const SettingsStack = createNativeStackNavigator();
+  
+  function SettingsStackScreen() {
+    return (
+      <SettingsStack.Navigator>
+        <SettingsStack.Screen name="Settings" component={SettingsScreen} />
+        <SettingsStack.Screen name="Details" component={DetailsScreen} />
+      </SettingsStack.Navigator>
+    );
+  }
+  
+  const Tab = createBottomTabNavigator();
 
 
 // Set the global error handler
@@ -90,7 +151,13 @@ ErrorUtils.setGlobalHandler((error, isFatal) => {
   return (
     <Provider store={store}>
         {/* <ErrorBoundary> */}
-      <NavigationControllerWithTab useTabs={true}/>
+      {/* <NavigationControllerWithTab useTabs={true}/> */}
+      <NavigationContainer>
+      <Tab.Navigator screenOptions={{ headerShown: false }}>
+        <Tab.Screen name="HomeStack" component={HomeStackScreen} />
+        <Tab.Screen name="SettingsStack" component={SettingsStackScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
   
     {/* </ErrorBoundary> */}
     </Provider>

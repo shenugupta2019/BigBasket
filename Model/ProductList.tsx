@@ -17,3 +17,8 @@ export interface ProductsList {
     imageUrl: string,
     qty:number
   } 
+
+  export interface CartItem extends Product {
+    quantity: number;
+    totalPrice: number;
+  }

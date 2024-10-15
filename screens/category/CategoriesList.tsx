@@ -39,8 +39,13 @@ const CategoriesList: React.FC = ({navigation}) => {
 
   useEffect(() => {
     console.log('redux state shenu from redux new testing redux useEffect ', categories[0].products);
-
+    if(categories.length>0){
+      console.log('no need to fetch data',categories[0].products)
+    }
+    else{
+      console.log('fetch data')
     dispatch(fetchData());
+    }
   }, []);
 
   // Filter categories based on search input

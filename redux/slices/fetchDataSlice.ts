@@ -6,11 +6,14 @@ import axiosInstance from '../../serviceLayer/axiosInstance';
 import {Product} from '../../Model/ProductList';
 import data from '../../localjson/productsList.json';
 import axios from 'axios';
+import { CartItem } from '../../Model/ProductList';
+
 
 interface Category {
   id: string;
   name: string;
   products: Product[];
+
 }
 
 interface ProductsList {
@@ -22,10 +25,12 @@ interface CategoriesState {
   categories: Category[];
   loading: boolean;
   error: string | null;
+  cartItems: CartItem[];
 }
 // Define the initial state
 const initialState: CategoriesState = {
   categories: data.categories,
+  cartItems: [],
   loading: false,
   error: null,
 };
@@ -69,26 +74,33 @@ const dataSlice = createSlice({
   reducers: {
     incrementQuantity: (
       state,
-      action: PayloadAction<{categoryId: string; productId: string;qty: number}>,
+      action: PayloadAction<{
+        categoryId: string;
+        productId: string;
+        qty: number;
+      }>,
     ) => {
-      const { categoryId, productId, qty } = action.payload;
+      const {categoryId, productId, qty} = action.payload;
 
-      console.log('category index redux shenu categoryId',categoryId)
+      console.log('category index redux shenu categoryId', categoryId);
 
-  // Find the category by its ID
-  const categoryIndex = state.categories.findIndex(cat => cat.id === categoryId);
+      // Find the category by its ID
+      const categoryIndex = state.categories.findIndex(
+        cat => cat.id === categoryId,
+      );
 
-  console.log('category index redux shenu',categoryIndex)
+      console.log('category index redux shenu', categoryIndex);
 
-  const category = state.categories.find((cat) => cat.id === categoryId);
+      const category = state.categories.find(cat => cat.id === categoryId);
 
-  if (category) {
-    const product = category.products.find((prod) => prod.id === productId);
-    if (product) {
-      product.qty += 1;
-    }
-  }
-  
+      if (category) {
+        const product = category.products.find(prod => prod.id === productId);
+        if (product) {
+          console.log('category index redux shenu incremented', categoryIndex);
+          product.qty += 1;
+        }
+      }
+
       // if (category) {
       //   // Find the product within the category by its ID
       //   const product = category.products.find(prod => prod.id === productId);
@@ -121,9 +133,23 @@ const dataSlice = createSlice({
         qty: number;
       }>,
     ) => {
-      const item = state.data.products.find(item => item.id === action.payload);
-      if (item && item.quantity > 1) {
-        item.quantity -= 1;
+      const {categoryId, productId, qty} = action.payload;
+
+      console.log('category index redux shenu categoryId', categoryId);
+
+      // Find the category by its ID
+      const categoryIndex = state.categories.findIndex(
+        cat => cat.id === categoryId,
+      );
+
+      console.log('category index redux shenu', categoryIndex);
+
+      const category = state.categories.find(cat => cat.id === categoryId);
+      if (category) {
+        const product = category.products.find(prod => prod.id === productId);
+        if (product) {
+          product.qty -= 1;
+        }
       }
     },
   },

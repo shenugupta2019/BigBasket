@@ -26,8 +26,9 @@ const HomeStack = createStackNavigator<HomeStackParamList>();
 // Generic Stack Navigator
 const StackNavigator: React.FC = () => (
   <HomeStack.Navigator initialRouteName="Category">
-    <HomeStack.Screen name="Category" component={CategoriesList}  options={{ headerShown: false }} />
-    <HomeStack.Screen name="Details" component={DetailsScreen} 
+    <HomeStack.Screen name="Category" component={CategoriesList}  options={{ headerShown: false ,tabBarStyle: { display: 'none' }}} />
+    <HomeStack.Screen name="Details" component={DetailsScreen}  
+
       />
   </HomeStack.Navigator>
 );
@@ -50,11 +51,14 @@ const TabNavigator: React.FC = () => (
         if (route.name === 'Details') iconName = 'list';
         return <Icon name={iconName} size={size} color={color} />;
       },
+      tabBarStyle: {
+        display:  'flex', // Hide tab bar on Details screen
+      },
       tabBarActiveTintColor: 'tomato',
       tabBarInactiveTintColor: 'gray',
     })}
   >
-    <Tab.Screen name="Home" component={StackNavigator} options={{ headerShown: false }} />
+    <Tab.Screen name="Category" component={StackNavigator}  />
     <Tab.Screen name="SettingsTab" component={SettingsNavigator} />
   </Tab.Navigator>
 );

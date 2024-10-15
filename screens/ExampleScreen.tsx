@@ -1,15 +1,13 @@
-import React,{useState} from 'react';
+import React, {useState} from 'react';
 import {View} from 'react-native';
 import Typography from '../components/atoms/Typography';
 import Button from '../components/atoms/button/Button';
 import ButtonWithIcon from '../components/molecules/buttonWithIcon/ButtonWithIcon';
-import TextInputComponent from '../components/atoms/textComponent/TextInputComponent'
-
+import TextInputComponent from '../components/atoms/textComponent/TextInputComponent';
 
 const ExampleScreen = () => {
   const [text, setText] = useState('');
   const [error, setError] = useState('');
-
 
   const handleSubmit = () => {
     if (!text) {
@@ -22,7 +20,7 @@ const ExampleScreen = () => {
   };
   return (
     <View style={{padding: 16}}>
-           <TextInputComponent
+      <TextInputComponent
         label="Enter your text"
         value={text}
         onChangeText={setText}
@@ -30,7 +28,7 @@ const ExampleScreen = () => {
         placeholder="Type here..."
       />
 
-<Button title="Submit" onPress={handleSubmit} />
+      <Button title="Submit" onPress={handleSubmit} />
       <Typography variant="h1" color="blue" align="center">
         Heading 1
       </Typography>
