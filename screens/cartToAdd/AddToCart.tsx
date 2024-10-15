@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet,SafeAreaView } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/NavigationControllerWithTab';
 import ImageComponent from '../../components/atoms/image/ImageComponent';
 import { globalStyles } from '../../components/GlobalStyles/GlobalStyles';  // Import global styles
 import StyledContainer from '../../components/GlobalStyles/StylesContainer';
 import Card from '../../components/molecules/Card';
-import HighPerformanceList from '../../components/HighPerformanceFlatList';
+import ProductDetail from '../../components/organism/productDetails/ProductDetails';
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
@@ -18,14 +18,17 @@ const AddToCart: React.FC<Props> = ({ navigation }) => {
     const handleCardPress = () => {
         console.log('Card pressed!');
       };
-  return (
-    <View style={styles.container}>
-   
-   <StyledContainer justifyContent='flex-start' flexDirection='column' style={styles.container}>
-      </StyledContainer>
-      <Text>Add to Cart Screen</Text> 
-     </View>
-  );
+      return (
+        <SafeAreaView>
+          <ProductDetail
+            name="Awesome Headphones"
+            imageUrl="https://example.com/product-image.jpg"
+            description="High-quality wireless headphones with noise cancellation."
+            price={299.99}
+            onAddToCart={handleCardPress}
+          />
+        </SafeAreaView>
+      );
 };
 
 const styles = StyleSheet.create({
