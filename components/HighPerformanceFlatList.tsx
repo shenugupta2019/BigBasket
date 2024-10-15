@@ -73,19 +73,14 @@ const HighPerformanceList: React.FC = ({productData, navigation,categoryId}) => 
   useEffect(() => {
     // Run on component mount and when the screen size changes
     calculateNumColumns();
-    
     // Add event listener for screen orientation or size changes
     const subscription = Dimensions.addEventListener('change', calculateNumColumns);
-
     // Clean up the event listener on unmount
     return () => {
       subscription?.remove();
     };
   }, []);
   
-  // console.log('shenu data categories flat list', productData);
-  // const [search, setSearch] = useState('');
-  // const [filteredData, setFilteredData] = useState(productData);
 
   const [categories, setCategories] = useState<Category[]>([]);
   const handleCardPress = (item: any) => {
@@ -96,9 +91,7 @@ const HighPerformanceList: React.FC = ({productData, navigation,categoryId}) => 
 
   // Fetch data from API or set it manually for testing
   useEffect(() => {
-    // setCategories(productData);
-    // setFilteredData(productData)
-    // console.log('shenu data categories useeffect 888888', categories);
+
   }, []);
 
   const renderItem = ({ item }: { item: Product }) => {

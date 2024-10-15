@@ -3,13 +3,10 @@ import {View, ViewStyle, TextStyle} from 'react-native';
 import ImageComponent from '../../atoms/image/ImageComponent';
 import QuantitySelector from '../QuantitySelector';
 import Button from '../../atoms/button/Button';
-import {useAppDispatch, useAppSelector} from '../../../redux/hooks';
-import {
-  incrementQuantity,
-  decrementQuantity,
-} from '../../../redux/slices/quantitySlice';
+import { useAppSelector} from '../../../redux/hooks';
+
 import {RootState, AppDispatch} from '../../../redux/store';
-import {Category, Product} from '../../../Model/ProductList';
+import {Product} from '../../../Model/ProductList';
 import Typography from '../../atoms/Typography';
 import productCardStyles from './ProductCard.styles';
 import { addItemToCart } from '../../../redux/slices/cartSlice';
@@ -110,7 +107,7 @@ const ProductCard: React.FC<CardProps> = ({
             {content}
           </Typography>
           <Typography variant="caption" color="black" align="left">
-            {content}
+            {item.price}
           </Typography>
         </View>
 
