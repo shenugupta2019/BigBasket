@@ -36,17 +36,11 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
   const increaseQuantity = () => {
     console.log('added qty shenu',categoryId)
     dispatch(incrementQuantity({ categoryId,productId:id,qty:quantity}));
-    // const newQuantity = quantity + 1;
-    // setQuantity(newQuantity);
-    // onQuantityChange?.(newQuantity); // Call the callback if provided
   };
 
   const decreaseQuantity = () => {
     console.log('decresed qtu shenu')
     dispatch(decrementQuantity({ categoryId,productId:id,qty:quantity }));
-    // const newQuantity = Math.max(quantity - 1, 1);
-    // setQuantity(newQuantity);
-    // onQuantityChange?.(newQuantity); // Call the callback if provided
   };
 
   return (

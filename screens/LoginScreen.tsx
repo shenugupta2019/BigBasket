@@ -16,8 +16,6 @@ const LoginScreen: React.FC = () => {
 
   }
 
-
-
   const handleLogin = async () => {
     try {
         const payload: UserLogin = {

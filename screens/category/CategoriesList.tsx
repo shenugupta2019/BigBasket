@@ -7,19 +7,11 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 import {TabParamList} from '../../navigation/TabParamsList';
 import {HomeStackParamList} from '../../navigation/HomeStackParamList';
-
 import CategoryCard from '../../components/molecules/categoryCard/CategoryCard';
 import categoryStyles from './Category.styles';
 import Typography from '../../components/atoms/Typography';
 import CustomSearchBar from '../../components/molecules/searchbar/CustomSearchBar';
 
-type Props = {
-  navigation: HomeScreenNavigationProp;
-};
-type RootStackParamList = {
-  Home: undefined;
-  Details: {id: string; name: string};
-};
 
 // Specify the type for navigation prop
 type HomeTabNavigationProp = BottomTabNavigationProp<TabParamList, 'HomeTab'>;

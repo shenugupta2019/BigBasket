@@ -28,11 +28,10 @@ import NavigationController from './navigation/NavigationControllerWithTab';
 import { NavigationContainer } from '@react-navigation/native';
 import TabNavigator from './navigation/TabNavigator';
 import NavigationControllerWithTab from './navigation/NavigationControllerWithTab';
-
-
 import HighPerformanceList from './components/HighPerformanceFlatList'
 import CategoriesList from './screens/category/CategoriesList'
-import ProductDetailsScreen from './screens/ProductDetailsScreen'
+import AddToCart from './screens/cartToAdd/AddToCart'
+import ProductDetailsScreen from './screens/productList/ProductDetailsScreen'
 import RegistrationScreen from './screens/RegistrationScreen'
 import Counter from './screens/Counter'
 import { Provider } from 'react-redux';
@@ -43,12 +42,9 @@ import LoginScreen from './screens/LoginScreen';
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary'; 
 import { Alert } from 'react-native';
 import RNRestart from 'react-native-restart'; 
-import TodoListScreen from './screens/TodoListScreen';
 import { Button } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-
 
 
 function App(): React.JSX.Element {
@@ -60,19 +56,7 @@ function App(): React.JSX.Element {
       </View>
     );
   }
-  
-  function HomeScreen({ navigation }) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Home screen</Text>
-        <Button
-          title="Go to Details"
-          onPress={() => navigation.navigate('Details')}
-        />
-      </View>
-    );
-  }
-  
+
   function SettingsScreen({ navigation }) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -91,7 +75,17 @@ function App(): React.JSX.Element {
     return (
       <HomeStack.Navigator>
         <HomeStack.Screen name="Home" component={CategoriesList} />
-        <HomeStack.Screen name="Details" component={ProductDetailsScreen} />
+        <HomeStack.Screen name="Details" component={ProductDetailsScreen}  options={({ navigation }) => ({
+            title: 'Home',
+            headerRight: () => (
+              <Button
+                onPress={() => navigation.navigate('AddToCart')}
+                title="Cart"
+                color="#000"
+              />
+            ),
+          })}/>
+           <HomeStack.Screen name="AddToCart" component={AddToCart} />
       </HomeStack.Navigator>
     );
   }
